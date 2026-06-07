@@ -10,7 +10,7 @@ AquaGuard operates as an event-driven edge orchestrator on a Raspberry Pi 5 equi
 flowchart TD
     subgraph "Edge Node (Raspberry Pi 5)"
         subgraph "Ingestion Interfaces"
-            MQTT[MQTT Client] -->|Topic: aquaguard/sensors/#| CoreConfig[Orchestrator main.py]
+            MQTT[MQTT Client] -->|"Topic: aquaguard/sensors/#"| CoreConfig[Orchestrator main.py]
             Cam[CSI/USB Camera] -->|OpenCV frames| CoreConfig
             Mic[Hydrophone/Microphone] -->|PyAudio chunks| CoreConfig
         end
