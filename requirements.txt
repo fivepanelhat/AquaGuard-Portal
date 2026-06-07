@@ -5,4 +5,4 @@ requests>=2.31.0
 numpy>=1.24.0
 opencv-python>=4.8.0.0
 pyaudio>=0.2.13
-coastal-alpine-core @ git+https://github.com/fivepanelhat/coastal-alpine-core.git
+coastal-alpine-core @ git+https://github.com/fivepanelhat/coastal-alpine-core.git@v0.1.0
