@@ -1,12 +1,15 @@
 # AquaGuard Portal: Water Quality & Aquaculture Monitor
 
+![AquaGuard Portal Banner](assets/social_preview.png)
+
 **Coastal Alpine Tech Limited**  
 *Edge AI | Sovereign Systems | Practical Intelligence*
 
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)  
-[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)  
-[![Hardware](https://img.shields.io/badge/Hardware-RPi_5_%2B_AI_HAT%2B_(Hailo)-orange.svg)]()  
-[![Compliance](https://img.shields.io/badge/Compliance-NES--F_2020_%7C_NES--MA_%7C_RMA_1991-green.svg)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)  
+[![Python: 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)  
+[![Hardware: Edge AI](https://img.shields.io/badge/Hardware-Raspberry%20Pi%205%20%2B%20NPU-orange.svg)]()  
+[![Sovereignty: Offline Native](https://img.shields.io/badge/Sovereignty-Offline%20Native-green.svg)]()  
+[![CI/CD: Active](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/ci.yml/badge.svg)](https://github.com/fivepanelhat/AquaGuard-Portal/actions)
 
 Autonomous on-premise multi-modal environmental and water quality monitoring system for New Zealand aquaculture and dairy farms using edge AI. Designed for full offline operation in remote coastal and rural environments.
 
@@ -76,8 +79,8 @@ cd AquaGuard-Portal
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 
-# Install shared core in editable mode and dependencies
-pip install -e ../coastal_alpine_core
+# Install shared core and dependencies
+pip install git+https://github.com/fivepanelhat/coastal-alpine-core.git
 pip install -r requirements.txt
 pip install -r requirements-dev.txt
 cp .env.example .env
@@ -108,17 +111,17 @@ python main.py
 
 ```mermaid
 flowchart TD
-    A[Multi-Modal Inputs] --> B[MQTT Sensors<br/>(pH, DO, Temp, Turbidity, Nitrate)]
-    A --> C[Camera<br/>(Water Clarity / Stock Behaviour)]
-    A --> D[Microphone<br/>(Acoustic Anomalies)]
+    A["Multi-Modal Inputs"] --> B["MQTT Sensors<br/>(pH, DO, Temp, Turbidity, Nitrate)"]
+    A --> C["Camera<br/>(Water Clarity / Stock Behaviour)"]
+    A --> D["Microphone<br/>(Acoustic Anomalies)"]
 
-    B & C & D --> E[Edge Inference Layer]
-    E --> F[Gemma 4 via Ollama<br/>(gemma4:e4b — multimodal)]
-    F --> G[LangGraph Orchestrator / Agent]
+    B & C & D --> E["Edge Inference Layer"]
+    E --> F["Gemma 4 via Ollama<br/>(gemma4:e4b — multimodal)"]
+    F --> G["LangGraph Orchestrator / Agent"]
 
-    G --> H[Actions & Actuators<br/>(Aeration, Pumps, Alert Relays)]
-    G --> I[Logging, Pruning & Compliance Export]
-    I --> J[Audit Records<br/>(JSON/CSV — council-ready)]
+    G --> H["Actions & Actuators<br/>(Aeration, Pumps, Alert Relays)"]
+    G --> I["Logging, Pruning & Compliance Export"]
+    I --> J["Audit Records<br/>(JSON/CSV — council-ready)"]
 
     subgraph "Data Sovereignty Layer"
         E
