@@ -10,9 +10,9 @@ Copy `.env.example` to `.env` and configure:
 
 ---
 
-## 2. NEMS-SQ Threshold Configuration
+## 2. Consent Threshold Configuration
 
-Set NEMS-SQ 2025 target range thresholds in `.env` matching your land-use category:
+Edit the threshold block in `.env` to match your specific resource consent conditions:
 
 Consult your regional council consent document for the correct values for your site.
 
