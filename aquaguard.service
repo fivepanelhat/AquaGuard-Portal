@@ -1,0 +1,35 @@
+[Unit]
+Description=AquaGuard Portal - Water Quality & Aquaculture Monitor
+Documentation=https://github.com/fivepanelhat/AquaGuard-Portal
+After=network.target ollama.service mosquitto.service
+Requires=ollama.service
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/AquaGuard-Portal
+Environment="PATH=/home/pi/AquaGuard-Portal/venv/bin"
+Environment="PYTHONUNBUFFERED=1"
+
+# Main executable
+ExecStart=/home/pi/AquaGuard-Portal/venv/bin/python main.py
+
+# Auto-restart on failure
+Restart=on-failure
+RestartSec=10
+
+# Output handling (send to systemd journal)
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=aquaguard
+
+# Resource limits (prevent runaway processes on RPi 5)
+MemoryMax=4G
+CPUQuota=80%
+MemoryAccounting=yes
+
+# Keep environment clean
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target
