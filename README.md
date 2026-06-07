@@ -5,7 +5,7 @@
 **Coastal Alpine Tech Limited**  
 *Edge AI | Sovereign Systems | Practical Intelligence*
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)  
+[![License: Proprietary](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE)  
 [![Python: 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)  
 [![Hardware: Edge AI](https://img.shields.io/badge/Hardware-Raspberry%20Pi%205%20%2B%20NPU-orange.svg)]()  
 [![Sovereignty: Offline Native](https://img.shields.io/badge/Sovereignty-Offline%20Native-green.svg)]()  
@@ -307,7 +307,7 @@ Contributions are welcome. Please see [CONTRIBUTING.md](./CONTRIBUTING.md) and [
 
 ## License
 
-This project is licensed under the MIT License — see the [LICENSE](./LICENSE) file for details.
+This project is licensed under the Coastal Alpine Tech Limited License — see the [LICENSE](./LICENSE) file for details.
 
 ---
 
