@@ -68,7 +68,7 @@ Additional challenges addressed:
 - Ollama with Gemma 4 edge model
 - Local MQTT broker (Mosquitto)
 
-> **Note on AI HAT+ terminology:** The correct product name is the **Raspberry Pi AI HAT+**, using the Hailo-8 (26 TOPS) or Hailo-8L (13 TOPS) NPU. The AI HAT+ 2 uses the Hailo-10H (40 TOPS) and supports generative AI workloads. All three are available in New Zealand via PB Tech and Kiwi Electronics.
+> **Note on AI HAT+ terminology:** The correct product name is the **Raspberry Pi AI HAT+**, using the Hailo-8 (26 TOPS) or Hailo-10L NPU. The AI HAT+ 2 uses the Hailo-10H (40 TOPS) and supports generative AI workloads. All three are available in New Zealand via PB Tech and Kiwi Electronics.
 
 ### Installation
 
