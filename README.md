@@ -301,11 +301,6 @@ Here in New Zealand, water (*wai*) is a *taonga* (treasure). Because this system
 * **Te Mana Raraunga (Māori Data Sovereignty Network):** [Principles of Māori Data Sovereignty](https://www.temanararaunga.maori.nz/)
 * **Ministry for the Environment:** [Te Mana o te Wai under the National Policy Statement for Freshwater Management](https://www.google.com/search?q=https://environment.govt.nz/acts-and-regulations/national-policy-statements/national-policy-statement-freshwater-management/te-mana-o-te-wai/)
 
----
-
-## Contributing
-
-Contributions are welcome. Please see [CONTRIBUTING.md](./CONTRIBUTING.md) and [DEVELOPMENT.md](./DEVELOPMENT.md).
 
 ---
 
