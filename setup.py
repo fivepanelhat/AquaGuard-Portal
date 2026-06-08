@@ -16,7 +16,7 @@ with open("requirements.txt", "r", encoding="utf-8") as fh:
 
 setup(
     name="aquaguard-portal",
-    version="0.1.0",
+    version="1.2.0",
     author="Coastal Alpine Tech Limited",
     author_email="info@coastalalpine.co.nz",
     description="Autonomous on-premise environmental and water quality monitoring system with edge AI",

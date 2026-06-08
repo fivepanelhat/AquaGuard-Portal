@@ -2,7 +2,7 @@
 
 All notable changes to AquaGuard Portal are documented here.
 
-## [Unreleased]
+## [1.2.0] - 2026-06-08
 
 ### Added
 - Initial repository structure and portal scaffold
