@@ -13,7 +13,8 @@
 [![CI/CD: Active](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/ci.yml/badge.svg)](https://github.com/fivepanelhat/AquaGuard-Portal/actions)  
 [![SecOps Scan](https://img.shields.io/github/actions/workflow/status/fivepanelhat/AquaGuard-Portal/portal-security-scan.yml?branch=main&label=SecOps%20Scan&style=flat-square&color=success)](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/portal-security-scan.yml)  
 [![Dependabot](https://img.shields.io/badge/Dependencies-Monitored-brightgreen?style=flat-square&logo=dependabot)]()  
-[![Interop](https://img.shields.io/badge/Interop-MQTT%20%7C%20OPC--UA-orange?style=flat-square)]()
+[![Interop](https://img.shields.io/badge/Interop-MQTT%20%7C%20OPC--UA-orange?style=flat-square)]()  
+[![Sustainability](https://img.shields.io/badge/EECA%20NZ-Carbon%20Tracked-green?style=flat-square)]()
 
 Autonomous on-premise multi-modal environmental and water quality monitoring system for New Zealand aquaculture and dairy farms using edge AI. Designed for full offline operation in remote coastal and rural environments.
 
