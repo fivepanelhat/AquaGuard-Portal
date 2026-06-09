@@ -12,7 +12,7 @@
 [![Hardware: Edge AI](https://img.shields.io/badge/Hardware-Raspberry%20Pi%205%20%2B%20Hailo--10L%20NPU-orange.svg)]()  
 [![Sovereignty](https://img.shields.io/badge/Sovereignty-NZ%20Data%20Bound-00247D?style=flat-square)]()  
 [![CI/CD: Active](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/ci.yml/badge.svg)](https://github.com/fivepanelhat/AquaGuard-Portal/actions)  
-[![SecOps Scan](https://img.shields.io/github/actions/workflow/status/fivepanelhat/AquaGuard-Portal/portal-security-scan.yml?branch=main&label=SecOps%20Scan&style=flat-square&color=success)](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/portal-security-scan.yml)  
+[![SecOps Scan](https://img.shields.io/github/actions/workflow/status/fivepanelhat/AquaGuard-Portal/secops.yml?branch=main&label=SecOps%20Scan&style=flat-square&color=success)](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/secops.yml)  
 [![Interop](https://img.shields.io/badge/Interop-MQTT%20%7C%20OPC--UA-orange?style=flat-square)]()  
 
 Autonomous on-premise multi-modal environmental and water quality monitoring system for New Zealand aquaculture and dairy farms using edge AI. Designed for full offline operation in remote coastal and rural environments.
