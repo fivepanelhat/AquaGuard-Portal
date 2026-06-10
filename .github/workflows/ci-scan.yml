@@ -1,6 +1,8 @@
 
 name: CI Scan
 on:
+  schedule:
+    - cron: "0 */8 * * *"
   push:
     branches: [ main ]
   pull_request:
@@ -22,8 +24,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
       - name: Run linters
-        run: |
-          flake8 .
+        run: flake8 .
       - name: Run tests
-        run: |
-          pytest
+        run: pytest
