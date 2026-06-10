@@ -1,4 +1,7 @@
 # AquaGuard Portal
+
+![CI](https://github.com/UNKNOWN_OWNER/AquaGuard-Portal/actions/workflows/secops.yml/badge.svg?branch=main)
+
 ![Dependencies](https://img.shields.io/badge/Dependencies-Monitored-brightgreen?style=flat-square&logo=dependabot) ![Sustainability](https://img.shields.io/badge/EECA%20NZ-Carbon%20Tracked-green?style=flat-square)
 
 ![AquaGuard Portal Banner](assets/social_preview.png)
