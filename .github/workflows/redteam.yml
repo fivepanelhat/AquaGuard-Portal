@@ -1,0 +1,24 @@
+
+name: RedTeam Tests
+on:
+  schedule:
+    - cron: "0 2 * * *"  # daily at 02:00 UTC
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  redteam:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install OWASP ZAP
+        run: |
+          sudo apt-get update && sudo apt-get install -y zaproxy
+      - name: Run ZAP baseline scan
+        run: |
+          zap-baseline.py -t https://your-app-url -g gen -r zap_report.html
+      - name: Upload ZAP report
+        uses: actions/upload-artifact@v4
+        with:
+          name: zap-report
+          path: zap_report.html
