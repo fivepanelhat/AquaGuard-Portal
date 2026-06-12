@@ -10,7 +10,6 @@ import gzip
 import shutil
 from pathlib import Path
 from datetime import datetime, timedelta
-from typing import Dict
 
 logger = logging.getLogger(__name__)
 
@@ -77,12 +76,18 @@ class MediaPruner:
                         try:
                             file_path.unlink()
                             deleted_count += 1
-                            logger.debug(f"Pruned media buffer: {file_path.name}")
+                            logger.debug(
+                                f"Pruned media buffer: {file_path.name}"
+                            )
                         except Exception as e:
-                            logger.error(f"Failed deleting media file {file_path.name}: {e}")
+                            logger.error(
+                                f"Failed deleting media file {file_path.name}: {e}"
+                            )
 
             if deleted_count > 0:
-                logger.info(f"MediaPruner: pruned {deleted_count} expired files from media directory.")
+                logger.info(
+                    f"MediaPruner: pruned {deleted_count} expired files from media directory."
+                )
         except Exception as e:
             logger.error(f"Error executing media pruning: {e}")
 
@@ -107,12 +112,18 @@ class MediaPruner:
                                     shutil.copyfileobj(f_in, f_out)
                             file_path.unlink()
                             compressed_count += 1
-                            logger.debug(f"Compressed log entry: {file_path.name}")
+                            logger.debug(
+                                f"Compressed log entry: {file_path.name}"
+                            )
                         except Exception as e:
-                            logger.error(f"Failed compressing log file {file_path.name}: {e}")
+                            logger.error(
+                                f"Failed compressing log file {file_path.name}: {e}"
+                            )
 
             if compressed_count > 0:
-                logger.info(f"MediaPruner: compressed {compressed_count} historical log files.")
+                logger.info(
+                    f"MediaPruner: compressed {compressed_count} historical log files."
+                )
         except Exception as e:
             logger.error(f"Error executing log compression: {e}")
 
@@ -139,7 +150,7 @@ class MediaPruner:
             "logs_count": 0,
             "compliance_count": 0,
             "total_size_mb": 0.0,
-            "timestamp": datetime.now().isoformat()
+            "timestamp": datetime.now().isoformat(),
         }
         try:
             total_bytes = 0
@@ -149,12 +160,18 @@ class MediaPruner:
                 total_bytes += sum(f.stat().st_size for f in m_files)
 
             if self.sensor_logs_dir.exists():
-                l_files = [f for f in self.sensor_logs_dir.glob("*.json*") if f.is_file()]
+                l_files = [
+                    f
+                    for f in self.sensor_logs_dir.glob("*.json*")
+                    if f.is_file()
+                ]
                 stats["logs_count"] = len(l_files)
                 total_bytes += sum(f.stat().st_size for f in l_files)
 
             if self.compliance_dir.exists():
-                c_files = [f for f in self.compliance_dir.glob("*") if f.is_file()]
+                c_files = [
+                    f for f in self.compliance_dir.glob("*") if f.is_file()
+                ]
                 stats["compliance_count"] = len(c_files)
                 total_bytes += sum(f.stat().st_size for f in c_files)
 

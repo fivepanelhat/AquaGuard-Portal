@@ -6,7 +6,6 @@ Handles OpenCV camera frames and PyAudio recordings. Includes mock fallbacks for
 
 import logging
 from typing import Optional, Any
-from datetime import datetime
 
 try:
     import cv2  # type: ignore
@@ -51,14 +50,18 @@ class AVCapture:
 
     async def start_video_stream(self) -> bool:
         if cv2 is None:
-            logger.warning("OpenCV not installed; enabling video simulation mode.")
+            logger.warning(
+                "OpenCV not installed; enabling video simulation mode."
+            )
             self.use_mock_video = True
             return True
 
         try:
             self.video_capture = cv2.VideoCapture(self.camera_index)
             if not self.video_capture.isOpened():
-                logger.warning(f"Could not open camera device at index {self.camera_index}. Enabling video simulation.")
+                logger.warning(
+                    f"Could not open camera device at index {self.camera_index}. Enabling video simulation."
+                )
                 self.use_mock_video = True
                 self.video_capture = None
                 return True
@@ -67,13 +70,17 @@ class AVCapture:
             logger.info("✓ Camera stream connected successfully.")
             return True
         except Exception as e:
-            logger.error(f"Error starting video stream: {e}. Enabling simulation.")
+            logger.error(
+                f"Error starting video stream: {e}. Enabling simulation."
+            )
             self.use_mock_video = True
             return True
 
     async def start_audio_stream(self) -> bool:
         if pyaudio is None:
-            logger.warning("PyAudio not installed; enabling audio simulation mode.")
+            logger.warning(
+                "PyAudio not installed; enabling audio simulation mode."
+            )
             self.use_mock_audio = True
             return True
 
@@ -89,7 +96,9 @@ class AVCapture:
             logger.info("✓ Microphone stream connected successfully.")
             return True
         except Exception as e:
-            logger.error(f"Error starting audio stream: {e}. Enabling simulation.")
+            logger.error(
+                f"Error starting audio stream: {e}. Enabling simulation."
+            )
             self.use_mock_audio = True
             return True
 
@@ -133,7 +142,9 @@ class AVCapture:
 
         try:
             # read from port
-            data = self.audio_stream.read(self.audio_chunk_size, exception_on_overflow=False)
+            data = self.audio_stream.read(
+                self.audio_chunk_size, exception_on_overflow=False
+            )
             logger.debug(f"Audio chunk read: {len(data)} bytes")
             return data
         except Exception as e:
@@ -163,7 +174,11 @@ class AVCapture:
         """
         Returns True if capture streams are working or if simulation mode is active.
         """
-        video_ok = self.use_mock_video or (self.video_capture is not None and self.video_capture.isOpened())
-        audio_ok = self.use_mock_audio or (self.audio_stream is not None and self.audio_stream.is_active())
+        video_ok = self.use_mock_video or (
+            self.video_capture is not None and self.video_capture.isOpened()
+        )
+        audio_ok = self.use_mock_audio or (
+            self.audio_stream is not None and self.audio_stream.is_active()
+        )
         logger.info(f"AV Health: video={video_ok}, audio={audio_ok}")
         return video_ok or audio_ok

@@ -4,9 +4,7 @@ portal_core/compliance_exporter.py - Compliance Exporter for AquaGuard Portal.
 Exports structured telemetry metrics and actuation histories into council-ready formats (CSV/JSON).
 """
 
-import os
 import csv
-import json
 import logging
 from pathlib import Path
 from portal_schemas.compliance import ComplianceRecord
@@ -24,7 +22,9 @@ class ComplianceExporter:
     def __init__(self, compliance_dir: str = "./telemetry_data/compliance"):
         self.compliance_dir = Path(compliance_dir)
         self.compliance_dir.mkdir(parents=True, exist_ok=True)
-        logger.info(f"Compliance Exporter active. Directory target: {self.compliance_dir}")
+        logger.info(
+            f"Compliance Exporter active. Directory target: {self.compliance_dir}"
+        )
 
     async def export_record(self, record: ComplianceRecord) -> bool:
         """
@@ -36,7 +36,7 @@ class ComplianceExporter:
             # 1. Export JSON Record
             json_filename = f"audit_{record.timestamp.strftime('%Y%m%d_%H%M%S')}_{record.audit_id}.json"
             json_path = self.compliance_dir / json_filename
-            
+
             if hasattr(record, "model_dump_json"):
                 json_data = record.model_dump_json(indent=2)
             else:
@@ -44,22 +44,22 @@ class ComplianceExporter:
 
             with open(json_path, "w", encoding="utf-8") as f:
                 f.write(json_data)
-            
+
             logger.debug(f"Saved audit JSON record to {json_path.name}")
 
             # 2. Append to Rolling CSV log matching consent ID
             csv_filename = f"compliance_ledger_{record.consent_id}.csv"
             csv_path = self.compliance_dir / csv_filename
-            
+
             file_exists = csv_path.exists()
-            
+
             # Extract individual parameters safely with fallbacks
             ph = record.metrics.get("pH", 0.0)
             do = record.metrics.get("dissolved_oxygen", 0.0)
             temp = record.metrics.get("temperature", 0.0)
             turbidity = record.metrics.get("turbidity", 0.0)
             nitrate = record.metrics.get("nitrate", 0.0)
-            
+
             row = {
                 "timestamp": record.timestamp.isoformat(),
                 "audit_id": record.audit_id,
@@ -72,7 +72,7 @@ class ComplianceExporter:
                 "metric_turbidity_NTU": turbidity,
                 "metric_nitrate_mgL": nitrate,
                 "actions_executed": "; ".join(record.actions_taken),
-                "operator_notes": record.operator_notes or ""
+                "operator_notes": record.operator_notes or "",
             }
 
             headers = list(row.keys())
@@ -83,8 +83,10 @@ class ComplianceExporter:
                     # Write regional council metadata and headers
                     writer.writeheader()
                 writer.writerow(row)
-            
-            logger.info(f"✓ Compliance Record exported successfully to {csv_filename}")
+
+            logger.info(
+                f"✓ Compliance Record exported successfully to {csv_filename}"
+            )
             return True
 
         except Exception as e:

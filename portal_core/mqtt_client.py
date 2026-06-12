@@ -32,7 +32,7 @@ class MQTTClient:
         self.broker_host = broker_host
         self.broker_port = broker_port
         self.client_id = client_id
-        self.topic_prefix = topic_prefix.rstrip('/')
+        self.topic_prefix = topic_prefix.rstrip("/")
         self.username = username
         self.password = password
         self.client = mqtt.Client(client_id=client_id, protocol=mqtt.MQTTv311)
@@ -70,19 +70,25 @@ class MQTTClient:
     def _on_message(self, client, userdata, msg):
         try:
             payload = json.loads(msg.payload.decode())
-            logger.debug(f"MQTT message received on topic '{msg.topic}': {payload}")
-            
+            logger.debug(
+                f"MQTT message received on topic '{msg.topic}': {payload}"
+            )
+
             # Enqueue the parsed telemetry frame
             asyncio.run_coroutine_threadsafe(
-                self.message_queue.put({
-                    "topic": msg.topic,
-                    "payload": payload,
-                    "timestamp": datetime.now().isoformat()
-                }),
-                asyncio.get_event_loop()
+                self.message_queue.put(
+                    {
+                        "topic": msg.topic,
+                        "payload": payload,
+                        "timestamp": datetime.now().isoformat(),
+                    }
+                ),
+                asyncio.get_event_loop(),
             )
         except json.JSONDecodeError as e:
-            logger.error(f"Failed decoding JSON payload on topic '{msg.topic}': {e}")
+            logger.error(
+                f"Failed decoding JSON payload on topic '{msg.topic}': {e}"
+            )
         except Exception as e:
             logger.error(f"Error handling message on topic '{msg.topic}': {e}")
 
@@ -95,12 +101,16 @@ class MQTTClient:
 
         for attempt in range(max_retries):
             try:
-                self.client.connect(self.broker_host, self.broker_port, keepalive=60)
+                self.client.connect(
+                    self.broker_host, self.broker_port, keepalive=60
+                )
                 self.client.loop_start()
                 logger.info("MQTT connection loop initiated.")
                 return True
             except Exception as e:
-                logger.error(f"MQTT connection attempt {attempt + 1}/{max_retries} failed: {e}")
+                logger.error(
+                    f"MQTT connection attempt {attempt + 1}/{max_retries} failed: {e}"
+                )
                 if attempt < max_retries - 1:
                     await asyncio.sleep(delay)
                     delay *= 2

@@ -16,10 +16,13 @@ logger = logging.getLogger(__name__)
 # Attempt importing physical GPIO module
 try:
     import RPi.GPIO as GPIO  # type: ignore
+
     ENABLE_GPIO = True
 except ImportError:
     ENABLE_GPIO = False
-    logger.warning("RPi.GPIO is unavailable; hardware control will operate in simulation mode.")
+    logger.warning(
+        "RPi.GPIO is unavailable; hardware control will operate in simulation mode."
+    )
 
 
 class HardwareControl:
@@ -80,13 +83,17 @@ class HardwareControl:
                 GPIO.setup(self.aerator_gpio_pin, GPIO.OUT)
                 self.aerator_pwm = GPIO.PWM(self.aerator_gpio_pin, 1000)
                 self.aerator_pwm.start(0)
-                logger.info(f"Aerator GPIO pin {self.aerator_gpio_pin} setup with PWM.")
+                logger.info(
+                    f"Aerator GPIO pin {self.aerator_gpio_pin} setup with PWM."
+                )
 
             if self.pump_gpio_pin:
                 GPIO.setup(self.pump_gpio_pin, GPIO.OUT)
                 self.pump_pwm = GPIO.PWM(self.pump_gpio_pin, 1000)
                 self.pump_pwm.start(0)
-                logger.info(f"Pump GPIO pin {self.pump_gpio_pin} setup with PWM.")
+                logger.info(
+                    f"Pump GPIO pin {self.pump_gpio_pin} setup with PWM."
+                )
 
             if self.valve_gpio_pin:
                 GPIO.setup(self.valve_gpio_pin, GPIO.OUT)
@@ -100,7 +107,9 @@ class HardwareControl:
 
             logger.info("✓ Hardware Control Setup successfully.")
         except Exception as e:
-            logger.error(f"✗ Failed setting up GPIO pins: {e}. Enabling simulation fallback.")
+            logger.error(
+                f"✗ Failed setting up GPIO pins: {e}. Enabling simulation fallback."
+            )
             self.simulation_mode = True
 
     async def cleanup(self):
@@ -124,14 +133,16 @@ class HardwareControl:
                 AerationAction.OFF: 0,
                 AerationAction.LOW: 30,
                 AerationAction.MEDIUM: 60,
-                AerationAction.HIGH: 100
+                AerationAction.HIGH: 100,
             }
             dc = duty_map.get(state, 0)
             self.aerator_state = state
             self.aerator_duty_cycle = dc
 
             if self.simulation_mode:
-                logger.info(f"[SIM] Aerator state -> {state.value} (PWM {dc}%)")
+                logger.info(
+                    f"[SIM] Aerator state -> {state.value} (PWM {dc}%)"
+                )
             else:
                 if self.aerator_pwm:
                     self.aerator_pwm.ChangeDutyCycle(dc)
@@ -149,18 +160,22 @@ class HardwareControl:
                 PumpAction.OFF: 0,
                 PumpAction.LOW: 33,
                 PumpAction.MEDIUM: 66,
-                PumpAction.HIGH: 100
+                PumpAction.HIGH: 100,
             }
             dc = duty_map.get(state, 0)
             self.pump_state = state
             self.pump_duty_cycle = dc
 
             if self.simulation_mode:
-                logger.info(f"[SIM] Water Pump state -> {state.value} (PWM {dc}%)")
+                logger.info(
+                    f"[SIM] Water Pump state -> {state.value} (PWM {dc}%)"
+                )
             else:
                 if self.pump_pwm:
                     self.pump_pwm.ChangeDutyCycle(dc)
-                    logger.info(f"Water Pump state -> {state.value} (PWM {dc}%)")
+                    logger.info(
+                        f"Water Pump state -> {state.value} (PWM {dc}%)"
+                    )
 
             self._record_action("pump", state.value, dc)
             return True
@@ -174,11 +189,18 @@ class HardwareControl:
             val = 1 if state == ValveAction.OPEN else 0
 
             if self.simulation_mode:
-                logger.info(f"[SIM] Valve state -> {state.value} (pin value {val})")
+                logger.info(
+                    f"[SIM] Valve state -> {state.value} (pin value {val})"
+                )
             else:
                 if self.valve_gpio_pin:
-                    GPIO.output(self.valve_gpio_pin, GPIO.HIGH if val == 1 else GPIO.LOW)
-                    logger.info(f"Valve state -> {state.value} (pin value {val})")
+                    GPIO.output(
+                        self.valve_gpio_pin,
+                        GPIO.HIGH if val == 1 else GPIO.LOW,
+                    )
+                    logger.info(
+                        f"Valve state -> {state.value} (pin value {val})"
+                    )
 
             self._record_action("valve", state.value, val)
             return True
@@ -189,13 +211,17 @@ class HardwareControl:
     async def trigger_alert(self, duration_ms: int = 500):
         try:
             if self.simulation_mode:
-                logger.warning(f"[SIM] Alert relay triggered for {duration_ms}ms.")
+                logger.warning(
+                    f"[SIM] Alert relay triggered for {duration_ms}ms."
+                )
             else:
                 if self.alert_gpio_pin:
                     GPIO.output(self.alert_gpio_pin, GPIO.HIGH)
                     await asyncio.sleep(duration_ms / 1000.0)
                     GPIO.output(self.alert_gpio_pin, GPIO.LOW)
-                    logger.warning(f"Alert relay triggered for {duration_ms}ms.")
+                    logger.warning(
+                        f"Alert relay triggered for {duration_ms}ms."
+                    )
 
             self._record_action("alert", "triggered", duration_ms)
         except Exception as e:
@@ -206,8 +232,10 @@ class HardwareControl:
         Translates a Pydantic-validated WaterOptimizationPlan dict into pin signals.
         """
         try:
-            logger.info(f"Enforcing action plan: {plan.get('plan_id', 'unknown')}")
-            
+            logger.info(
+                f"Enforcing action plan: {plan.get('plan_id', 'unknown')}"
+            )
+
             aeration_action = plan.get("aeration_action")
             pump_action = plan.get("pump_action")
             valve_action = plan.get("valve_action")
@@ -215,17 +243,29 @@ class HardwareControl:
             success = True
 
             if aeration_action:
-                state = AerationAction(aeration_action.lower() if isinstance(aeration_action, str) else aeration_action)
+                state = AerationAction(
+                    aeration_action.lower()
+                    if isinstance(aeration_action, str)
+                    else aeration_action
+                )
                 ok = await self.set_aerator(state)
                 success = success and ok
 
             if pump_action:
-                state = PumpAction(pump_action.lower() if isinstance(pump_action, str) else pump_action)
+                state = PumpAction(
+                    pump_action.lower()
+                    if isinstance(pump_action, str)
+                    else pump_action
+                )
                 ok = await self.set_pump(state)
                 success = success and ok
 
             if valve_action:
-                state = ValveAction(valve_action.lower() if isinstance(valve_action, str) else valve_action)
+                state = ValveAction(
+                    valve_action.lower()
+                    if isinstance(valve_action, str)
+                    else valve_action
+                )
                 ok = await self.set_valve(state)
                 success = success and ok
 
@@ -239,12 +279,14 @@ class HardwareControl:
             return False
 
     def _record_action(self, device: str, action: str, value: int):
-        self.action_history.append({
-            "timestamp": datetime.now().isoformat(),
-            "device": device,
-            "action": action,
-            "value": value
-        })
+        self.action_history.append(
+            {
+                "timestamp": datetime.now().isoformat(),
+                "device": device,
+                "action": action,
+                "value": value,
+            }
+        )
         if len(self.action_history) > 1000:
             self.action_history.pop(0)
 
@@ -252,20 +294,22 @@ class HardwareControl:
         return {
             "aerator": {
                 "state": self.aerator_state.value,
-                "duty_cycle_pct": self.aerator_duty_cycle
+                "duty_cycle_pct": self.aerator_duty_cycle,
             },
             "pump": {
                 "state": self.pump_state.value,
-                "duty_cycle_pct": self.pump_duty_cycle
+                "duty_cycle_pct": self.pump_duty_cycle,
             },
-            "valve": {
-                "state": self.valve_state.value
-            },
+            "valve": {"state": self.valve_state.value},
             "simulation_mode": self.simulation_mode,
-            "timestamp": datetime.now().isoformat()
+            "timestamp": datetime.now().isoformat(),
         }
 
     async def health_check(self) -> bool:
         if not self.simulation_mode:
-            return bool(self.aerator_gpio_pin or self.pump_gpio_pin or self.valve_gpio_pin)
+            return bool(
+                self.aerator_gpio_pin
+                or self.pump_gpio_pin
+                or self.valve_gpio_pin
+            )
         return True

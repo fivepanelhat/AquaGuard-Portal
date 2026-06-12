@@ -5,7 +5,6 @@ Tests configuration ranges, schema structures, compliance exporters, and actuato
 """
 
 import sys
-import os
 import shutil
 import pytest
 import json
@@ -25,7 +24,7 @@ from portal_schemas.compliance import (
     ComplianceRecord,
     AerationAction,
     PumpAction,
-    ValveAction
+    ValveAction,
 )
 
 
@@ -54,7 +53,7 @@ def test_sensor_reading_schema():
         sensor_type="pH",
         value=7.45,
         unit="pH",
-        timestamp=datetime.now()
+        timestamp=datetime.now(),
     )
     assert reading.value == 7.45
     assert reading.sensor_id == "ph_probe_1"
@@ -71,7 +70,7 @@ def test_analysis_result_schema():
         turbidity_trend="stable",
         nitrate_trend="decreasing",
         observations="Looks clear, behaviors are normal.",
-        timestamp=datetime.now()
+        timestamp=datetime.now(),
     )
     assert res.status == "healthy"
     assert res.temperature_trend == "increasing"
@@ -87,7 +86,7 @@ def test_optimization_plan_schema():
         confidence_score=0.92,
         logistical_notes="Oxygen levels drop, boosting aeration.",
         execution_window_minutes=15,
-        requires_human_review=False
+        requires_human_review=False,
     )
     assert plan.aeration_action == AerationAction.HIGH
     assert plan.pump_action == PumpAction.MEDIUM
@@ -99,7 +98,7 @@ def test_optimization_plan_schema():
 async def test_compliance_record_export(temp_compliance_dir):
     """Verify ComplianceExporter writes JSON audits and appends to CSV ledgers."""
     exporter = ComplianceExporter(compliance_dir=str(temp_compliance_dir))
-    
+
     record = ComplianceRecord(
         audit_id="aud-112233",
         timestamp=datetime.now(),
@@ -111,10 +110,10 @@ async def test_compliance_record_export(temp_compliance_dir):
             "dissolved_oxygen": 6.5,
             "temperature": 16.0,
             "turbidity": 8.0,
-            "nitrate": 1.2
+            "nitrate": 1.2,
         },
         actions_taken=["aerator: medium", "pump: low", "valve: closed"],
-        operator_notes="Validation test execution loop."
+        operator_notes="Validation test execution loop.",
     )
 
     success = await exporter.export_record(record)
@@ -136,10 +135,13 @@ async def test_compliance_record_export(temp_compliance_dir):
     with open(csv_files[0], "r", newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         rows = list(reader)
-    
+
     assert len(rows) == 1
     assert rows[0]["audit_id"] == "aud-112233"
     assert rows[0]["regional_council"] == "Horizons Regional Council"
     assert float(rows[0]["metric_pH"]) == 7.2
     assert float(rows[0]["metric_DO_mgL"]) == 6.5
-    assert rows[0]["actions_executed"] == "aerator: medium; pump: low; valve: closed"
+    assert (
+        rows[0]["actions_executed"]
+        == "aerator: medium; pump: low; valve: closed"
+    )
