@@ -27,3 +27,27 @@ jobs:
           languages: python
       - name: Perform CodeQL analysis
         uses: github/codeql-action/analyze@v2
+
+  security-scan:
+    name: Bandit SAST Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11' # Matches our hardened edge environment
+
+      - name: Install Bandit
+        run: pip install bandit
+
+      - name: Run Bandit Security Scan
+        # CRITICAL SECOPS CONFIG: We explicitly exclude the stress tests folder. 
+        # Otherwise, our simulated prompt injections and mock JWTs will trip the alarms!
+        # -ll means report only Medium and High severity issues.
+        run: bandit -r . -ll --exclude ./tests_security_stress/
