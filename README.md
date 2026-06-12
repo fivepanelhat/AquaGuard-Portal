@@ -12,13 +12,13 @@
 
 [![License](https://img.shields.io/badge/License-Proprietary--Commercial-blue?style=flat-square)](LICENSE)  
 [![Python: 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)  
-[![Hardware Target](https://img.shields.io/badge/Hardware-Raspberry%20Pi%205%2016GB-C11A5B?style=flat-square&logo=raspberry-pi&logoColor=white)]()  
-[![Hardware: Edge AI](https://img.shields.io/badge/Hardware-Raspberry%20Pi%205%20%2B%20Hailo--10L%20NPU-orange.svg)]()  
-[![Sovereignty](https://img.shields.io/badge/Sovereignty-NZ%20Data%20Bound-00247D?style=flat-square)]()  
+![Hardware Target](https://img.shields.io/badge/Hardware-Raspberry%20Pi%205%2016GB-C11A5B?style=flat-square&logo=raspberry-pi&logoColor=white)  
+![Hardware: Edge AI](https://img.shields.io/badge/Hardware-Raspberry%20Pi%205%20%2B%20Hailo--10L%20NPU-orange.svg)  
+![Sovereignty](https://img.shields.io/badge/Sovereignty-NZ%20Data%20Bound-00247D?style=flat-square)  
 [![CI/CD: Active](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/ci.yml/badge.svg)](https://github.com/fivepanelhat/AquaGuard-Portal/actions)  
 [![SecOps Scan](https://img.shields.io/github/actions/workflow/status/fivepanelhat/AquaGuard-Portal/secops.yml?branch=main&label=SecOps%20Scan&style=flat-square&color=success)](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/secops.yml)  
 [![RedTeam](https://img.shields.io/github/actions/workflow/status/fivepanelhat/AquaGuard-Portal/redteam.yml?branch=main&label=RedTeam&style=flat-square&color=critical)](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/redteam.yml)  
-[![Interop](https://img.shields.io/badge/Interop-MQTT%20%7C%20OPC--UA-orange?style=flat-square)]()  
+![Interop](https://img.shields.io/badge/Interop-MQTT%20%7C%20OPC--UA-orange?style=flat-square)  
 
 Autonomous on-premise multi-modal environmental and water quality monitoring system for New Zealand aquaculture and dairy farms using edge AI. Designed for full offline operation in remote coastal and rural environments.
 
@@ -66,7 +66,8 @@ Additional challenges addressed:
 
 ### Prerequisites
 
-**Hardware (NZ-available)**
+#### Hardware (NZ-available)
+
 - Raspberry Pi 5 (16GB RAM) — available from [PB Tech](https://www.pbtech.co.nz) and [Kiwi Electronics](https://www.kiwi-electronics.com)
 - **Raspberry Pi AI HAT+** (26 TOPS, Hailo-8 NPU) — available from [PB Tech](https://www.pbtech.co.nz/product/SEVRBP0545) and Kiwi Electronics  
   *Upgrade path: AI HAT+ 2 (40 TOPS, Hailo-10H) for heavier multi-model pipelines*
@@ -169,12 +170,14 @@ AquaGuard-Portal/
 
 ## Technology Stack
 
-**Hardware**
+### Hardware
+
 - Raspberry Pi 5 (16GB) + Raspberry Pi AI HAT+ (Hailo-8 NPU, 26 TOPS)
 - Water quality sensors (pH, DO, temperature, turbidity, nitrate), ESP32 MQTT gateway
 - Camera modules with aquatic IP-rated housing; optional hydrophone
 
-**Software**
+### Software
+
 - **Orchestration:** LangGraph agentic pipeline
 - **Inference:** Ollama + Gemma 4 (`gemma4:e4b` for edge; multimodal text + image)
 - **Messaging:** Paho MQTT + Mosquitto broker
@@ -192,7 +195,7 @@ This section maps AquaGuard Portal's data outputs to the key NZ regulatory instr
 ### Primary Legislation
 
 | Instrument | Relevance to AquaGuard |
-|---|---|
+| --- | --- |
 | Resource Management Act 1991 (RMA) | Foundational environmental framework under transition. Draft Natural Environment Bill and Planning Bill introduced in December 2025 (public consultation closed February 2026). AquaGuard is designed to adapt to the incoming Natural Environment Bill framework. |
 | Fisheries Act 1996 | Governs land-based aquaculture licensing; marine farmers must be on the MPI Fish Farmer Register |
 | Biosecurity Act 1993 | Aquatic pest/disease surveillance; AquaGuard acoustic and visual anomaly logs support early detection obligations under the Government Industry Agreement (GIA) |
@@ -265,7 +268,7 @@ Deployed in RAS facilities (salmon, trout, whitebait ranching) where water param
 **Conservation & Wetland Restoration**  
 Integrated into ecological restoration sites — wetlands, riparian plantings, kaitiakitanga monitoring programmes — for real-time biodiversity and water health tracking. Suitable for iwi-led environmental monitoring with full data sovereignty.
 
-**Implementation Notes**
+### Implementation Notes
 
 - Assemble hardware per [HARDWARE_SETUP.md](./HARDWARE_SETUP.md) with IP67/IP68-rated enclosures for any components in or near water
 - Calibrate water quality sensors against known standards before deployment; recalibrate per manufacturer schedule (typically 3–6 months for DO probes, 12 months for pH)
@@ -303,9 +306,8 @@ Here in New Zealand, water (*wai*) is a *taonga* (treasure). Because this system
 
 **Relevant References & Standards:**
 
-* **Te Mana Raraunga (Māori Data Sovereignty Network):** [Principles of Māori Data Sovereignty](https://www.temanararaunga.maori.nz/)
-* **Ministry for the Environment:** [Te Mana o te Wai under the National Policy Statement for Freshwater Management](https://www.google.com/search?q=https://environment.govt.nz/acts-and-regulations/national-policy-statements/national-policy-statement-freshwater-management/te-mana-o-te-wai/)
-
+- **Te Mana Raraunga (Māori Data Sovereignty Network):** [Principles of Māori Data Sovereignty](https://www.temanararaunga.maori.nz/)
+- **Ministry for the Environment:** [Te Mana o te Wai under the National Policy Statement for Freshwater Management](https://www.google.com/search?q=https://environment.govt.nz/acts-and-regulations/national-policy-statements/national-policy-statement-freshwater-management/te-mana-o-te-wai/)
 
 ---
 
@@ -320,4 +322,4 @@ Questions or collaboration? Contact Coastal Alpine Tech Limited, New Plymouth, T
 
 ---
 
-*Last updated: June 2026*
+Last updated: June 2026.
