@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           submodules: recursive
@@ -33,11 +34,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           submodules: recursive
           fetch-depth: 0
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
