@@ -1,6 +1,7 @@
 # AquaGuard Portal
 
-![CI](https://github.com/UNKNOWN_OWNER/AquaGuard-Portal/actions/workflows/secops.yml/badge.svg?branch=main)
+[![CI](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/secops.yml/badge.svg?branch=main)](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/secops.yml)
+[![RedTeam](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/redteam.yml/badge.svg?branch=main)](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/redteam.yml)
 
 ![Dependencies](https://img.shields.io/badge/Dependencies-Monitored-brightgreen?style=flat-square&logo=dependabot) ![Sustainability](https://img.shields.io/badge/EECA%20NZ-Carbon%20Tracked-green?style=flat-square)
 
@@ -16,6 +17,7 @@
 [![Sovereignty](https://img.shields.io/badge/Sovereignty-NZ%20Data%20Bound-00247D?style=flat-square)]()  
 [![CI/CD: Active](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/ci.yml/badge.svg)](https://github.com/fivepanelhat/AquaGuard-Portal/actions)  
 [![SecOps Scan](https://img.shields.io/github/actions/workflow/status/fivepanelhat/AquaGuard-Portal/secops.yml?branch=main&label=SecOps%20Scan&style=flat-square&color=success)](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/secops.yml)  
+[![RedTeam](https://img.shields.io/github/actions/workflow/status/fivepanelhat/AquaGuard-Portal/redteam.yml?branch=main&label=RedTeam&style=flat-square&color=critical)](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/redteam.yml)  
 [![Interop](https://img.shields.io/badge/Interop-MQTT%20%7C%20OPC--UA-orange?style=flat-square)]()  
 
 Autonomous on-premise multi-modal environmental and water quality monitoring system for New Zealand aquaculture and dairy farms using edge AI. Designed for full offline operation in remote coastal and rural environments.
