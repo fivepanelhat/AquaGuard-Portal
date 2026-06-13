@@ -1,5 +1,9 @@
 # AquaGuard Portal
 
+![CI](https://github.com/fivepanelhat/AquaGuard-Portal.git
+/actions/workflows/secops.yml/badge.svg?branch=main)
+
+
 [![CI](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/secops.yml/badge.svg?branch=main)](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/secops.yml)
 [![RedTeam](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/redteam.yml/badge.svg?branch=main)](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/redteam.yml)
 
