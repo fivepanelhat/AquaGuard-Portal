@@ -1,9 +1,5 @@
 # AquaGuard Portal
 
-![CI](https://github.com/fivepanelhat/AquaGuard-Portal.git
-/actions/workflows/secops.yml/badge.svg?branch=main)
-
-
 [![CI](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/secops.yml/badge.svg?branch=main)](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/secops.yml)
 [![RedTeam](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/redteam.yml/badge.svg?branch=main)](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/redteam.yml)
 
@@ -84,14 +80,35 @@ Additional challenges addressed:
 
 > **Note on AI HAT+ terminology:** The correct product name is the **Raspberry Pi AI HAT+**, using the Hailo-8 (26 TOPS) or Hailo-10L NPU. The AI HAT+ 2 uses the Hailo-10H (40 TOPS) and supports generative AI workloads. All three are available in New Zealand via PB Tech and Kiwi Electronics.
 
-### Installation
+### Installation & Setup
+
+We provide separate guides for system environment setup and installation for Windows and Linux users:
+
+* **Prerequisites & System Setup Guide**: Read [setup.md](setup.md)
+* **Installation Guide**: Read [installation.md](installation.md)
+
+### Quick Start (Automated Setup)
+The fastest way to install is running the cross-platform bootstrap script:
+
+```bash
+python bootstrap.py
+```
+
+d-Portal
+python bootstrap.py
+```
+
+### Manual Installation
+
+<details open>
+<summary><strong>🐧 Linux / macOS (Bash)</strong></summary>
 
 ```bash
 git clone https://github.com/fivepanelhat/AquaGuard-Portal.git
 cd AquaGuard-Portal
 
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+python3 -m venv venv
+source venv/bin/activate
 
 # Install shared core and dependencies
 pip install git+https://github.com/fivepanelhat/coastal-alpine-core.git
@@ -99,6 +116,29 @@ pip install -r requirements.txt
 pip install -r requirements-dev.txt
 cp .env.example .env
 ```
+
+</details>
+
+<details>
+<summary><strong>🪟 Windows (PowerShell)</strong></summary>
+
+```powershell
+git clone https://github.com/fivepanelhat/AquaGuard-Portal.git
+cd AquaGuard-Portal
+
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+
+# Install shared core and dependencies
+pip install git+https://github.com/fivepanelhat/coastal-alpine-core.git
+pip install -r requirements.txt
+pip install -r requirements-dev.txt
+Copy-Item .env.example .env
+```
+
+> **Note:** If you receive an execution policy error, run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` first.
+
+</details>
 
 ### Model Setup & Validation
 
