@@ -10,9 +10,9 @@ import logging
 import re
 from typing import Optional
 from datetime import datetime
-
 import uuid
 
+from coastal_alpine_core import SovereignOllamaClient
 from coastal_alpine_core.security import SecurityGuard, SecurityResult
 from coastal_alpine_core.telemetry import TelemetryTracker
 from coastal_alpine_core.flywheel import DataFlywheel, Trajectory
