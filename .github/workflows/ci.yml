@@ -26,9 +26,9 @@ jobs:
           pip install -r requirements-dev.txt
 
       - name: Verify against coastal-alpine-core
-        uses: fivepanelhat/coastal-alpine-core/.github/actions/verify-after-core-update@main
+        uses: fivepanelhat/coastal-alpine-core/.github/actions/verify-core-update@main
         with:
-          core-version: v0.3.0
+          core-ref: v0.3.0
 
       - name: Run full test suite
         run: pytest -q --tb=short
