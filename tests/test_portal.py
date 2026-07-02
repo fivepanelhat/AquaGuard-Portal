@@ -15,8 +15,8 @@ from datetime import datetime
 # Add portal root to import path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from portal_core.config import load_config, AquaGuardConfig
-from portal_core.compliance_exporter import ComplianceExporter
+from coastal_alpine_core.portal_core.config import load_aquaguard_config, AquaGuardConfig
+from coastal_alpine_core.portal_core.compliance_exporter import ComplianceExporter
 from portal_schemas.compliance import (
     WaterSensorReading,
     WaterAnalysisResult,
@@ -39,7 +39,7 @@ def temp_compliance_dir(tmp_path):
 
 def test_config_load():
     """Verify config structures and default ranges."""
-    config = load_config()
+    config = load_aquaguard_config()
     assert isinstance(config, AquaGuardConfig)
     assert config.thresholds.ph_min < config.thresholds.ph_max
     assert config.thresholds.do_min > 0

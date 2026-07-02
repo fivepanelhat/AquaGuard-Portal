@@ -10,13 +10,13 @@ import signal
 import uuid
 from datetime import datetime
 
-from portal_core.config import load_config, print_config
-from portal_core.ai_agent import AIAgent
-from portal_core.mqtt_client import MQTTClient
-from portal_core.av_capture import AVCapture
-from portal_core.hardware_control import HardwareControl
-from portal_core.media_pruner import MediaPruner
-from portal_core.compliance_exporter import ComplianceExporter
+from coastal_alpine_core.portal_core.config import load_aquaguard_config, print_config
+from coastal_alpine_core.portal_core.ai_agent import AIAgent
+from coastal_alpine_core.portal_core.mqtt_client import MQTTClient
+from coastal_alpine_core.portal_core.av_capture import AVCapture
+from coastal_alpine_core.portal_core.hardware_control import HardwareController
+from coastal_alpine_core.portal_core.media_pruner import MediaPruner
+from coastal_alpine_core.portal_core.compliance_exporter import ComplianceExporter
 from portal_schemas.compliance import ComplianceRecord
 
 from coastal_alpine_core.flywheel import DataFlywheel
@@ -53,7 +53,7 @@ class AquaGuardPortal:
             audio_sample_rate=config.audio.sample_rate,
             audio_chunk_size=config.audio.chunk_size,
         )
-        self.hardware_control = HardwareControl(
+        self.hardware_control = HardwareController(
             aerator_gpio_pin=config.hardware.aerator_gpio_pin,
             pump_gpio_pin=config.hardware.pump_gpio_pin,
             valve_gpio_pin=config.hardware.valve_gpio_pin,
