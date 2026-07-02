@@ -7,7 +7,7 @@ Defines schemas for water sensors, reasoning states, hardware controls, and regi
 from datetime import datetime
 from enum import Enum
 from typing import Dict, List, Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 
 
 class AerationAction(str, Enum):
@@ -123,8 +123,8 @@ class WaterOptimizationPlan(BaseModel):
         default=False, description="Flag if manual sign-off is needed"
     )
 
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "plan_id": "opt-water-2026-06-07-001",
                 "generated_at": "2026-06-07T16:00:00Z",
@@ -137,6 +137,7 @@ class WaterOptimizationPlan(BaseModel):
                 "requires_human_review": False,
             }
         }
+    )
 
 
 class ComplianceRecord(BaseModel):

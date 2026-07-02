@@ -8,7 +8,7 @@ import os
 import logging
 from pathlib import Path
 from typing import Optional
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, field_validator
 from dotenv import load_dotenv
 
 logger = logging.getLogger(__name__)
@@ -20,7 +20,8 @@ class OllamaConfig(BaseModel):
     host: str = Field(default="http://localhost:11434")
     model: str = Field(default="gemma4:e4b")
 
-    @validator("host")
+    @field_validator("host", mode="before")
+    @classmethod
     def validate_host(cls, v):
         if not v.startswith("http://") and not v.startswith("https://"):
             raise ValueError("Ollama host must start with http:// or https://")
@@ -46,7 +47,8 @@ class StorageConfig(BaseModel):
     retention_hours: int = Field(default=48, ge=1)
     critical_disk_usage_pct: float = Field(default=85.0, ge=50.0, le=99.0)
 
-    @validator("media_dir", "sensor_logs_dir", "compliance_dir", pre=True)
+    @field_validator("media_dir", "sensor_logs_dir", "compliance_dir", mode="before")
+    @classmethod
     def create_and_validate_paths(cls, v):
         path = Path(v) if isinstance(v, str) else v
         path.mkdir(parents=True, exist_ok=True)
@@ -66,7 +68,8 @@ class AudioConfig(BaseModel):
     sample_rate: int = Field(default=16000)
     chunk_size: int = Field(default=4096, ge=256, le=65536)
 
-    @validator("sample_rate")
+    @field_validator("sample_rate", mode="before")
+    @classmethod
     def validate_rate(cls, v):
         valid = [8000, 16000, 44100, 48000]
         if v not in valid:
@@ -108,7 +111,8 @@ class LoggingConfig(BaseModel):
     level: str = Field(default="INFO")
     file: Optional[Path] = Field(default=None)
 
-    @validator("level")
+    @field_validator("level", mode="before")
+    @classmethod
     def validate_level(cls, v):
         valid_levels = ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
         if v.upper() not in valid_levels:
