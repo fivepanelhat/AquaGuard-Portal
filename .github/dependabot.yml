@@ -1,10 +1,24 @@
 version: 2
 updates:
-  - package-ecosystem: "npm"
+  - package-ecosystem: "pip"
     directory: "/"
     schedule:
       interval: "weekly"
-  - package-ecosystem: "docker"
-    directory: "/"
-    schedule:
-      interval: "weekly"
+      day: "tuesday"
+      time: "06:00"
+    open-pull-requests-limit: 4
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "core-update"
+    reviewers:
+      - "fivepanelhat"
+    groups:
+      coastal-alpine-core:
+        patterns:
+          - "coastal-alpine-core"
+        update-types:
+          - "minor"
+          - "patch"
