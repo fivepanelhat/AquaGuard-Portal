@@ -1,0 +1,19 @@
+{
+  "name": "@fivepanelhat/aquaguard-portal-api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AquaGuard HTTP layer: attested actuation + telemetry ingestion (sovereign edge, offline-first)",
+  "main": "server.js",
+  "engines": { "node": ">=22 <23" },
+  "scripts": {
+    "test": "node --test tests/js/",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "coastal-alpine-core": "github:fivepanelhat/coastal-alpine-core#v0.2.1",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.1.5",
+    "better-sqlite3": "^11.3.0",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
