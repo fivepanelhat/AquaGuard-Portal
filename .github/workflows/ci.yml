@@ -31,7 +31,7 @@ jobs:
       - name: Verify against coastal-alpine-core
         uses: fivepanelhat/coastal-alpine-core/.github/actions/verify-core-update@main
         with:
-          core-ref: v0.5.1
+          core-ref: v0.5.2
 
       - name: Run full test suite
         run: pytest -q --tb=short
