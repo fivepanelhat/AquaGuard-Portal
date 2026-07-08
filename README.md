@@ -1,6 +1,6 @@
 # AquaGuard Portal
 
-[![CI](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/secops.yml/badge.svg?branch=main)](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/secops.yml)
+[![CI](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/ci-scan.yml/badge.svg?branch=main)](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/ci-scan.yml)
 [![RedTeam](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/redteam.yml/badge.svg?branch=main)](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/redteam.yml)
 
 ![Dependencies](https://img.shields.io/badge/Dependencies-Monitored-brightgreen?style=flat-square&logo=dependabot) ![Sustainability](https://img.shields.io/badge/EECA%20NZ-Carbon%20Tracked-green?style=flat-square)
