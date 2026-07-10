@@ -9,7 +9,7 @@
 | Component | Spec | NZ Supplier |
 |---|---|---|
 | Raspberry Pi 5 | 16GB RAM | PB Tech, Kiwi Electronics |
-| Raspberry Pi AI HAT+ | Hailo-10L NPU, 26 TOPS | PB Tech, Kiwi Electronics |
+| Raspberry Pi AI HAT+ | Hailo-10H NPU, 40 TOPS | PB Tech, Kiwi Electronics |
 | Water quality sensor kit | pH, DO, temperature, turbidity | Atlas Scientific, DFRobot via AliExpress |
 | ESP32 gateway | WiFi/MQTT | Jaycar, Kiwi Electronics |
 | IP67/IP68 enclosure | Sensor housing | RS Components NZ |
@@ -37,7 +37,7 @@ sudo reboot
 hailortcli fw-control identify
 ```
 
-Expected output: `Hailo-10L device detected`.
+Expected output: `Hailo-10H device detected`.
 
 ---
 

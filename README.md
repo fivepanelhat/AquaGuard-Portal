@@ -13,7 +13,7 @@
 [![License](https://img.shields.io/badge/License-Proprietary--Commercial-blue?style=flat-square)](LICENSE)  
 [![Python: 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)  
 ![Hardware Target](https://img.shields.io/badge/Hardware-Raspberry%20Pi%205%2016GB-C11A5B?style=flat-square&logo=raspberry-pi&logoColor=white)  
-![Hardware: Edge AI](https://img.shields.io/badge/Hardware-Raspberry%20Pi%205%20%2B%20Hailo--10L%20NPU-orange.svg)  
+![NPU Acceleration](https://img.shields.io/badge/NPU-Hailo--10H%20Accelerated-005A9C?style=flat-square)  
 ![Sovereignty](https://img.shields.io/badge/Sovereignty-NZ%20Data%20Bound-00247D?style=flat-square)  
 [![CI/CD: Active](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/ci.yml/badge.svg)](https://github.com/fivepanelhat/AquaGuard-Portal/actions)  
 [![SecOps Scan](https://img.shields.io/github/actions/workflow/status/fivepanelhat/AquaGuard-Portal/secops.yml?branch=main&label=SecOps%20Scan&style=flat-square&color=success)](https://github.com/fivepanelhat/AquaGuard-Portal/actions/workflows/secops.yml)  
@@ -69,8 +69,8 @@ Additional challenges addressed:
 #### Hardware (NZ-available)
 
 - Raspberry Pi 5 (16GB RAM) — available from [PB Tech](https://www.pbtech.co.nz) and [Kiwi Electronics](https://www.kiwi-electronics.com)
-- **Raspberry Pi AI HAT+** (26 TOPS, Hailo-10L NPU) — available from [PB Tech](https://www.pbtech.co.nz/product/SEVRBP0545) and Kiwi Electronics  
-  *Upgrade path: AI HAT+ 2 (40 TOPS, Hailo-10L) for heavier multi-model pipelines*
+- **Raspberry Pi AI Accelerator / AI HAT+ 2** (40 TOPS, Hailo-10H NPU) — available from [PB Tech](https://www.pbtech.co.nz/product/SEVRBP0545) and Kiwi Electronics  
+  *Canonical target: AI HAT+ 2 / Hailo-10H (40 TOPS) for multi-model and generative workloads*
 - Water quality sensors (pH, DO, temperature, turbidity) via ESP32 over MQTT
 - CSI or USB camera module (appropriate IP67/IP68 underwater housing for aquatic deployment)
 - Hydrophone or directional microphone (optional, for acoustic anomaly detection)
@@ -78,7 +78,7 @@ Additional challenges addressed:
 - Ollama with Gemma 4 edge model
 - Local MQTT broker (Mosquitto)
 
-> **Note on AI HAT+ terminology:** The correct product name is the **Raspberry Pi AI HAT+**, using the Hailo-10L (26 TOPS) or Hailo-10L NPU. The AI HAT+ 2 uses the Hailo-10L (40 TOPS) and supports generative AI workloads. All three are available in New Zealand via PB Tech and Kiwi Electronics.
+> **Canonical edge target:** **Raspberry Pi 5 (16GB)** with **Hailo-10H NPU** (40 TOPS) via the Raspberry Pi AI Accelerator / AI HAT+ 2. Available in New Zealand via PB Tech and Kiwi Electronics.
 
 ### Installation & Setup
 
@@ -216,7 +216,7 @@ AquaGuard-Portal/
 
 ### Hardware
 
-- Raspberry Pi 5 (16GB) + Raspberry Pi AI HAT+ (Hailo-10L NPU, 26 TOPS)
+- Raspberry Pi 5 (16GB) + Raspberry Pi AI Accelerator / AI HAT+ 2 (Hailo-10H NPU, 40 TOPS)
 - Water quality sensors (pH, DO, temperature, turbidity, nitrate), ESP32 MQTT gateway
 - Camera modules with aquatic IP-rated housing; optional hydrophone
 
@@ -326,7 +326,7 @@ Integrated into ecological restoration sites — wetlands, riparian plantings, k
 
 ## Performance & Benchmarks
 
-- Sub-second local inference on RPi 5 + AI HAT+ (26 TOPS Hailo-10L NPU)
+- Sub-second local inference on RPi 5 + AI HAT+ (40 TOPS Hailo-10H NPU)
 - `gemma4:e4b` fits comfortably within 16GB RPi 5 RAM with headroom for sensor processing
 - Efficient storage via automated media pruning; compliance records retained per configurable retention policy
 - Reliable offline operation with deterministic JSON outputs; no cloud dependency for inference or logging
