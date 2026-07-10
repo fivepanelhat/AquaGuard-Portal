@@ -149,33 +149,85 @@ python main.py
 
 ## Architecture Overview
 
+AquaGuard is a closed-loop **water quality and aquaculture** edge agent. Multi-modal inputs feed local Gemma 4 (Ollama) on **RPi 5 16GB + Hailo-10H**; actuators and council-ready audit exports stay on-premise.
+
+![AquaGuard architecture — liquid glass overview](assets/architecture_overview.png)
+
+### System map
+
 ```mermaid
-flowchart TD
-    A["Multi-Modal Inputs"] --> B["MQTT Sensors<br/>(pH, DO, Temp, Turbidity, Nitrate)"]
-    A --> C["Camera<br/>(Water Clarity / Stock Behaviour)"]
-    A --> D["Microphone<br/>(Acoustic Anomalies)"]
+%%{init: {
+  "theme": "dark",
+  "themeVariables": {
+    "fontSize": "16px",
+    "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif",
+    "primaryColor": "#0ea5e9",
+    "primaryTextColor": "#f8fafc",
+    "primaryBorderColor": "#38bdf8",
+    "lineColor": "#67e8f9",
+    "secondaryColor": "#1e293b",
+    "tertiaryColor": "#0f172a",
+    "clusterBkg": "#0b1220cc",
+    "clusterBorder": "#38bdf880",
+    "titleColor": "#e2e8f0"
+  },
+  "flowchart": {
+    "nodeSpacing": 40,
+    "rankSpacing": 48,
+    "padding": 20,
+    "htmlLabels": true,
+    "curve": "basis"
+  }
+}}%%
+flowchart TB
 
-    B & C & D --> E["Edge Inference Layer"]
-    E --> F["Gemma 4 via Ollama<br/>(gemma4:e4b — multimodal)"]
-    F --> G["LangGraph Orchestrator / Agent"]
+    classDef sense fill:#052e16,stroke:#4ade80,stroke-width:2px,color:#f0fdf4
+    classDef edge fill:#0c4a6e,stroke:#38bdf8,stroke-width:2px,color:#f0f9ff
+    classDef core fill:#134e4a,stroke:#2dd4bf,stroke-width:2px,color:#f0fdfa
+    classDef act fill:#422006,stroke:#fbbf24,stroke-width:2px,color:#fffbeb
+    classDef store fill:#1e1b4b,stroke:#a5b4fc,stroke-width:2px,color:#eef2ff
+    classDef ai fill:#3b0764,stroke:#e879f9,stroke-width:2px,color:#fdf4ff
+    classDef app fill:#1e1b4b,stroke:#c4b5fd,stroke-width:2px,color:#eef2ff
 
-    G --> H["Actions & Actuators<br/>(Aeration, Pumps, Alert Relays)"]
-    G --> I["Logging, Pruning & Compliance Export"]
-    I --> J["Audit Records<br/>(JSON/CSV — council-ready)"]
-
-    subgraph "Data Sovereignty Layer"
-        E
-        I
-        J
+    subgraph IN["① Multi-modal inputs"]
+        direction LR
+        S["MQTT sensors<br/>pH · DO · temp · turbidity · nitrate"]
+        C["CSI / USB camera<br/>clarity · stock behaviour"]
+        M["Microphone<br/>acoustic anomalies"]
     end
 
-    style G fill:#4ade80,stroke:#166534
-    style J fill:#bfdbfe,stroke:#1d4ed8
+    subgraph EDGE["② Edge inference — RPi 5 16GB + Hailo-10H"]
+        CORE["Coastal-Alpine-Core<br/>guards · telemetry"]
+        LLM["Gemma 4 via Ollama<br/>gemma4:e4b multimodal"]
+        AG["LangGraph / AI agent"]
+    end
+
+    subgraph OUT["③ Actions & compliance"]
+        ACT["Actuators<br/>aeration · pumps · relays"]
+        LOG["Logging · pruning · export"]
+        AUD["Audit records<br/>JSON/CSV council-ready"]
+    end
+
+    S & C & M --> CORE --> LLM --> AG
+    AG --> ACT
+    AG --> LOG --> AUD
+
+    class S,C,M sense
+    class CORE,AG core
+    class LLM ai
+    class ACT act
+    class LOG,AUD store
 ```
 
-*For full details, see [ARCHITECTURE.md](./ARCHITECTURE.md) and [HARDWARE_SETUP.md](./HARDWARE_SETUP.md).*
+| Layer | Components | Role |
+| :--- | :--- | :--- |
+| **Inputs** | MQTT + camera + mic | Multi-modal farm / marine capture |
+| **Core** | Coastal-Alpine-Core | Shared safety + telemetry |
+| **Reasoning** | Gemma 4 e4b local | Offline multimodal LLM |
+| **Actuation** | Pumps · aeration · alerts | Closed-loop control |
+| **Compliance** | Local JSON/CSV export | Council-ready audit trail |
 
----
+*Full detail: [ARCHITECTURE.md](./ARCHITECTURE.md) · [HARDWARE_SETUP.md](./HARDWARE_SETUP.md)*
 
 ## Directory Structure
 
