@@ -2,7 +2,7 @@
 
 ![AquaGuard Portal Banner](assets/social_preview.png)
 
-**Coastal Alpine Tech Limited**  
+**Coastal Alpine Tech Limited** — pre-seed startup, New Plymouth, Taranaki, Aotearoa New Zealand.
 *Edge AI | Sovereign Systems | Practical Intelligence*
 
 
@@ -12,7 +12,7 @@ Autonomous on-premise multi-modal environmental and water quality monitoring sys
 
 ## The 5 Ws: Project Context
 
-- **Who:** Built by Coastal Alpine Tech Limited, in partnership with NZ aquaculture operators, dairy farmers, and tāngata whenua with interests in freshwater and coastal environments.
+- **Who:** Built by Coastal Alpine Tech Limited, for collaboration with (pre-seed; relationships in development) NZ aquaculture operators, dairy farmers, and tāngata whenua with interests in freshwater and coastal environments.
 - **What:** A multi-modal, agentic IoT pipeline that ingests sensor telemetry, visual, and acoustic data to autonomously monitor water quality, detect anomalies, optimise operations, and generate audit-ready compliance records.
 - **Where:** Deployed on-site for marine aquaculture operations (mussel, salmon, oyster farms), land-based aquaculture, or dairy effluent management systems. Engineered at HQ in New Plymouth, Taranaki.
 - **When:** Active development as of June 2026.
@@ -148,6 +148,8 @@ python main.py
 ---
 
 ## Architecture Overview
+
+> **Diagrams:** Architecture images and Mermaid maps describe the **target product architecture** for this pre-seed stack. They are engineering design maps — not claims of large-scale commercial fleet deployment.
 
 AquaGuard is a closed-loop **water quality and aquaculture** edge agent. Multi-modal inputs feed local Gemma 4 (Ollama) on **RPi 5 16GB + Hailo-10H**; actuators and council-ready audit exports stay on-premise.
 
