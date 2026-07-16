@@ -16,6 +16,38 @@
 Anti-hallucination policy: [`.github/agent-fleet/anti-hallucination.md`](./.github/agent-fleet/anti-hallucination.md) | Congruence: [`CAT_CONGRUENCE.md`](./CAT_CONGRUENCE.md)
 <!-- END CAT_CONGRUENCE_SNIPPET -->
 
+<!-- BEGIN PROBLEMS_SOLUTIONS_ECONOMY -->
+## Problems we are solving
+
+**AquaGuard** brings offline multi-modal water / runoff monitoring to NZ farms and aquatic sites.
+
+1. **Connectivity gaps** - Coastal and rural sites lose internet; compliance logging cannot stop.
+2. **Fragmented water parameters** - pH, DO, turbidity, nitrate, and vision are rarely fused in real time.
+3. **Regulatory burden** - NES-F, farm plans, and regional consents need auditable local records.
+4. **Te Mana o te Wai** - Freshwater decisions require data custody that respects tangata whenua standing.
+
+## Solution we have built
+
+| Built capability | What it does |
+| :--- | :--- |
+| **Edge portal** | MQTT sensors + AV + local Gemma/Ollama analysis |
+| **Compliance export** | JSON/CSV records oriented to council reporting |
+| **Offline operation** | Continues through rural blackouts |
+| **Stack fit** | Built on Coastal-Alpine-Core; sister to Byte Size Kai / SoilGuard |
+
+### Local (Taranaki) and national (Aotearoa) economic benefits
+
+| Lever | Benefit |
+| :--- | :--- |
+| **Regional R&D HQ** | Product design and IP stay in New Plymouth / Taranaki - not only Auckland/offshore SaaS |
+| **Primary-sector productivity** | On-farm and rural tools aim to cut waste, protect consents, and support export competitiveness |
+| **Skilled employment pathways** | Edge install, field support, agritech ops, software, compliance, and cultural advisory roles as pilots scale |
+| **Data sovereignty** | Te Mana Raraunga-aligned local custody keeps high-value operational data onshore |
+| **HITL jobs quality** | Agents **inform / draft / prepare / monitor / remind**; humans **advise / sign / file / send / pay** - augment people, do not fake full autonomy |
+
+**Stage honesty (pre-seed):** Impact today is founder R&D, near-term contractors, and EDA/partner leverage. Permanent multi-region payroll follows paid pilots and revenue - we do not invent headcount claims.
+<!-- END PROBLEMS_SOLUTIONS_ECONOMY -->
+
 [![License: Proprietary](https://img.shields.io/badge/License-Proprietary--Commercial-blue.svg)](./LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776ab?logo=python&logoColor=white)](https://www.python.org)
 [![Ollama](https://img.shields.io/badge/Ollama-Gemma%204-000000?logo=ollama&logoColor=white)](https://ollama.com)
@@ -59,17 +91,6 @@ Autonomous on-premise multi-modal environmental and water quality monitoring sys
 
 ---
 
-## The Problem We Are Solving
-
-The problem we are solving is the lack of reliable, offline-capable, multi-modal monitoring in NZ aquaculture and dairy farming, which leads to delayed responses to water quality issues, environmental non-compliance, and suboptimal production outcomes.
-
-Additional challenges addressed:
-
-1. **Cloud Dependency & Connectivity** Remote coastal farms and marine sites frequently lose internet, making cloud-based monitoring unreliable and creating gaps in mandatory environmental records.
-2. **Fragmented Sensor Data** Disparate water parameters (pH, dissolved oxygen, temperature, turbidity, nitrate) and visual/acoustic cues are rarely analysed together in real time.
-3. **Regulatory Compliance Burden** New Zealand's freshwater and marine regulations (NES-F, NES-MA, Freshwater Farm Plans) require auditable, timestamped, sovereign data records that third-party cloud services cannot reliably guarantee.
-4. **Tangata Whenua Data Sovereignty** Under the NPS-FM 2020 hierarchy of *Te Mana o te Wai*, iwi and hapu have legal standing in freshwater management decisions. Monitoring data that informs those decisions must remain in the custody of those who generate it.
-5. **Effluent Consent Monitoring** Regional council permitted activity rules require continuous, documented compliance monitoring of dairy effluent systems 365 days a year.
 
 ---
 
