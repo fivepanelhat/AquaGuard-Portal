@@ -12,10 +12,9 @@
 
 > Sovereign hybrid edge AI for NZ farms and founders - local-first + multi-model, Te Mana Raraunga aligned - collaborating with Venture Taranaki, startups.com investors and Kotahitanga Investment Fund (HITL + cultural advisory for formal approaches).
 
-**Agents inform, draft, prepare, monitor, and remind. Humans advise, sign, file, send, and pay.**  
+**Agents inform, draft, prepare, monitor, and remind. Humans advise, sign, file, send, and pay.** 
 Anti-hallucination policy: [`.github/agent-fleet/anti-hallucination.md`](./.github/agent-fleet/anti-hallucination.md) | Congruence: [`CAT_CONGRUENCE.md`](./CAT_CONGRUENCE.md)
 <!-- END CAT_CONGRUENCE_SNIPPET -->
-
 
 [![License: Proprietary](https://img.shields.io/badge/License-Proprietary--Commercial-blue.svg)](./LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776ab?logo=python&logoColor=white)](https://www.python.org)
@@ -43,9 +42,8 @@ Anti-hallucination policy: [`.github/agent-fleet/anti-hallucination.md`](./.gith
 
 ![AquaGuard Portal Banner](assets/social_preview.png)
 
-**Coastal Alpine Tech Limited**  pre-seed startup, New Plymouth, Taranaki, Aotearoa New Zealand.
+**Coastal Alpine Tech Limited** pre-seed startup, New Plymouth, Taranaki, Aotearoa New Zealand.
 *Edge AI | Sovereign Systems | Practical Intelligence*
-
 
 Autonomous on-premise multi-modal environmental and water quality monitoring system for New Zealand aquaculture and dairy farms using edge AI. Designed for full offline operation in remote coastal and rural environments.
 
@@ -53,11 +51,11 @@ Autonomous on-premise multi-modal environmental and water quality monitoring sys
 
 ## The 5 Ws: Project Context
 
-- **Who:** Built by Coastal Alpine Tech Limited, for collaboration with (pre-seed; relationships in development) NZ aquaculture operators, dairy farmers, and tÄngata whenua with interests in freshwater and coastal environments.
+- **Who:** Built by Coastal Alpine Tech Limited, for collaboration with (pre-seed; relationships in development) NZ aquaculture operators, dairy farmers, and tangata whenua with interests in freshwater and coastal environments.
 - **What:** A multi-modal, agentic IoT pipeline that ingests sensor telemetry, visual, and acoustic data to autonomously monitor water quality, detect anomalies, optimise operations, and generate audit-ready compliance records.
 - **Where:** Deployed on-site for marine aquaculture operations (mussel, salmon, oyster farms), land-based aquaculture, or dairy effluent management systems. Engineered at HQ in New Plymouth, Taranaki.
 - **When:** Active development as of June 2026.
-- **Why:** To deliver localised data sovereignty and real-time decision intelligence  without cloud latency or privacy risks  in New Zealand's remote or regulated aquatic environments. Compliance record-keeping is built into the data model from day one.
+- **Why:** To deliver localised data sovereignty and real-time decision intelligence without cloud latency or privacy risks in New Zealand's remote or regulated aquatic environments. Compliance record-keeping is built into the data model from day one.
 
 ---
 
@@ -67,18 +65,18 @@ The problem we are solving is the lack of reliable, offline-capable, multi-modal
 
 Additional challenges addressed:
 
-1. **Cloud Dependency & Connectivity**  Remote coastal farms and marine sites frequently lose internet, making cloud-based monitoring unreliable and creating gaps in mandatory environmental records.
-2. **Fragmented Sensor Data**  Disparate water parameters (pH, dissolved oxygen, temperature, turbidity, nitrate) and visual/acoustic cues are rarely analysed together in real time.
-3. **Regulatory Compliance Burden**  New Zealand's freshwater and marine regulations (NES-F, NES-MA, Freshwater Farm Plans) require auditable, timestamped, sovereign data records that third-party cloud services cannot reliably guarantee.
-4. **TÄngata Whenua Data Sovereignty**  Under the NPS-FM 2020 hierarchy of *Te Mana o te Wai*, iwi and hapÅ« have legal standing in freshwater management decisions. Monitoring data that informs those decisions must remain in the custody of those who generate it.
-5. **Effluent Consent Monitoring**  Regional council permitted activity rules require continuous, documented compliance monitoring of dairy effluent systems  365 days a year.
+1. **Cloud Dependency & Connectivity** Remote coastal farms and marine sites frequently lose internet, making cloud-based monitoring unreliable and creating gaps in mandatory environmental records.
+2. **Fragmented Sensor Data** Disparate water parameters (pH, dissolved oxygen, temperature, turbidity, nitrate) and visual/acoustic cues are rarely analysed together in real time.
+3. **Regulatory Compliance Burden** New Zealand's freshwater and marine regulations (NES-F, NES-MA, Freshwater Farm Plans) require auditable, timestamped, sovereign data records that third-party cloud services cannot reliably guarantee.
+4. **Tangata Whenua Data Sovereignty** Under the NPS-FM 2020 hierarchy of *Te Mana o te Wai*, iwi and hapu have legal standing in freshwater management decisions. Monitoring data that informs those decisions must remain in the custody of those who generate it.
+5. **Effluent Consent Monitoring** Regional council permitted activity rules require continuous, documented compliance monitoring of dairy effluent systems 365 days a year.
 
 ---
 
 ## Key Features
 
 - Multi-modal input processing (MQTT water sensors, underwater/above-water cameras, microphone)
-- Local Gemma 4 inference via Ollama  multimodal (text + image)  for analysis, prediction, and control
+- Local Gemma 4 inference via Ollama multimodal (text + image) for analysis, prediction, and control
 - Edge-native execution with full offline capability
 - Automated data logging and media pruning
 - Deterministic outputs via Pydantic schemas
@@ -95,9 +93,9 @@ Additional challenges addressed:
 
 #### Hardware (NZ-available)
 
-- Raspberry Pi 5 (16GB RAM)  available from [PB Tech](https://www.pbtech.co.nz) and [Kiwi Electronics](https://www.kiwi-electronics.com)
-- **Raspberry Pi AI Accelerator / AI HAT+ 2** (40 TOPS, Hailo-10H NPU)  available from [PB Tech](https://www.pbtech.co.nz/product/SEVRBP0545) and Kiwi Electronics
-  *Canonical target: AI HAT+ 2 / Hailo-10H (40 TOPS) for multi-model and generative workloads*
+- Raspberry Pi 5 (16GB RAM) available from [PB Tech](https://www.pbtech.co.nz) and [Kiwi Electronics](https://www.kiwi-electronics.com)
+- **Raspberry Pi AI Accelerator / AI HAT+ 2** (40 TOPS, Hailo-10H NPU) available from [PB Tech](https://www.pbtech.co.nz/product/SEVRBP0545) and Kiwi Electronics
+ *Canonical target: AI HAT+ 2 / Hailo-10H (40 TOPS) for multi-model and generative workloads*
 - Water quality sensors (pH, DO, temperature, turbidity) via ESP32 over MQTT
 - CSI or USB camera module (appropriate IP67/IP68 underwater housing for aquatic deployment)
 - Hydrophone or directional microphone (optional, for acoustic anomaly detection)
@@ -128,7 +126,7 @@ python bootstrap.py
 ### Manual Installation
 
 <details open>
-<summary><strong>ðŸ§ Linux / macOS (Bash)</strong></summary>
+<summary><strong> Linux / macOS (Bash)</strong></summary>
 
 ```bash
 git clone https://github.com/fivepanelhat/AquaGuard-Portal.git
@@ -147,7 +145,7 @@ cp .env.example .env
 </details>
 
 <details>
-<summary><strong>ðŸªŸ Windows (PowerShell)</strong></summary>
+<summary><strong> Windows (PowerShell)</strong></summary>
 
 ```powershell
 git clone https://github.com/fivepanelhat/AquaGuard-Portal.git
@@ -170,13 +168,13 @@ Copy-Item .env.example .env
 ### Model Setup & Validation
 
 ```bash
-ollama serve          # In one terminal
-ollama pull gemma4:e4b   # Efficient 4B  recommended for RPi 5 (16GB RAM)
+ollama serve # In one terminal
+ollama pull gemma4:e4b # Efficient 4B recommended for RPi 5 (16GB RAM)
 # Alternative for AI HAT+ 2 (40 TOPS): ollama pull gemma4:12b
 python validate.py
 ```
 
-> **Model selection note:** `gemma4:e4b` is the recommended tag for Raspberry Pi 5 deployments. Gemma 4 is multimodal  it accepts both text and image input, enabling direct camera frame analysis without a separate vision pipeline. Do not use `gemma4:latest` as a tag in production; pin to an explicit variant for reproducibility.
+> **Model selection note:** `gemma4:e4b` is the recommended tag for Raspberry Pi 5 deployments. Gemma 4 is multimodal it accepts both text and image input, enabling direct camera frame analysis without a separate vision pipeline. Do not use `gemma4:latest` as a tag in production; pin to an explicit variant for reproducibility.
 
 ### Running the Portal
 
@@ -190,76 +188,76 @@ python main.py
 
 ## Architecture Overview
 
-> **Diagrams:** Architecture images and Mermaid maps describe the **target product architecture** for this pre-seed stack. They are engineering design maps  not claims of large-scale commercial fleet deployment.
+> **Diagrams:** Architecture images and Mermaid maps describe the **target product architecture** for this pre-seed stack. They are engineering design maps not claims of large-scale commercial fleet deployment.
 
 AquaGuard is a closed-loop **water quality and aquaculture** edge agent. Multi-modal inputs feed local Gemma 4 (Ollama) on **RPi 5 16GB + Hailo-10H**; actuators and council-ready audit exports stay on-premise.
 
-![AquaGuard architecture  liquid glass overview](assets/architecture_overview.png)
+![AquaGuard architecture liquid glass overview](assets/architecture_overview.png)
 
 ### System map
 
 ```mermaid
 %%{init: {
-  "theme": "dark",
-  "themeVariables": {
-    "fontSize": "16px",
-    "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif",
-    "primaryColor": "#0ea5e9",
-    "primaryTextColor": "#f8fafc",
-    "primaryBorderColor": "#38bdf8",
-    "lineColor": "#67e8f9",
-    "secondaryColor": "#1e293b",
-    "tertiaryColor": "#0f172a",
-    "clusterBkg": "#0b1220cc",
-    "clusterBorder": "#38bdf880",
-    "titleColor": "#e2e8f0"
-  },
-  "flowchart": {
-    "nodeSpacing": 40,
-    "rankSpacing": 48,
-    "padding": 20,
-    "htmlLabels": true,
-    "curve": "basis"
-  }
+ "theme": "dark",
+ "themeVariables": {
+ "fontSize": "16px",
+ "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif",
+ "primaryColor": "#0ea5e9",
+ "primaryTextColor": "#f8fafc",
+ "primaryBorderColor": "#38bdf8",
+ "lineColor": "#67e8f9",
+ "secondaryColor": "#1e293b",
+ "tertiaryColor": "#0f172a",
+ "clusterBkg": "#0b1220cc",
+ "clusterBorder": "#38bdf880",
+ "titleColor": "#e2e8f0"
+ },
+ "flowchart": {
+ "nodeSpacing": 40,
+ "rankSpacing": 48,
+ "padding": 20,
+ "htmlLabels": true,
+ "curve": "basis"
+ }
 }}%%
 flowchart TB
 
-    classDef sense fill:#052e16,stroke:#4ade80,stroke-width:2px,color:#f0fdf4
-    classDef edge fill:#0c4a6e,stroke:#38bdf8,stroke-width:2px,color:#f0f9ff
-    classDef core fill:#134e4a,stroke:#2dd4bf,stroke-width:2px,color:#f0fdfa
-    classDef act fill:#422006,stroke:#fbbf24,stroke-width:2px,color:#fffbeb
-    classDef store fill:#1e1b4b,stroke:#a5b4fc,stroke-width:2px,color:#eef2ff
-    classDef ai fill:#3b0764,stroke:#e879f9,stroke-width:2px,color:#fdf4ff
-    classDef app fill:#1e1b4b,stroke:#c4b5fd,stroke-width:2px,color:#eef2ff
+ classDef sense fill:#052e16,stroke:#4ade80,stroke-width:2px,color:#f0fdf4
+ classDef edge fill:#0c4a6e,stroke:#38bdf8,stroke-width:2px,color:#f0f9ff
+ classDef core fill:#134e4a,stroke:#2dd4bf,stroke-width:2px,color:#f0fdfa
+ classDef act fill:#422006,stroke:#fbbf24,stroke-width:2px,color:#fffbeb
+ classDef store fill:#1e1b4b,stroke:#a5b4fc,stroke-width:2px,color:#eef2ff
+ classDef ai fill:#3b0764,stroke:#e879f9,stroke-width:2px,color:#fdf4ff
+ classDef app fill:#1e1b4b,stroke:#c4b5fd,stroke-width:2px,color:#eef2ff
 
-    subgraph IN["â'  Multi-modal inputs"]
-        direction LR
-        S["MQTT sensors<br/>pH | DO | temp | turbidity | nitrate"]
-        C["CSI / USB camera<br/>clarity | stock behaviour"]
-        M["Microphone<br/>acoustic anomalies"]
-    end
+ subgraph IN[" Multi-modal inputs"]
+ direction LR
+ S["MQTT sensors<br/>pH | DO | temp | turbidity | nitrate"]
+ C["CSI / USB camera<br/>clarity | stock behaviour"]
+ M["Microphone<br/>acoustic anomalies"]
+ end
 
-    subgraph EDGE["â'¡ Edge inference  RPi 5 16GB + Hailo-10H"]
-        CORE["Coastal-Alpine-Core<br/>guards | telemetry"]
-        LLM["Gemma 4 via Ollama<br/>gemma4:e4b multimodal"]
-        AG["LangGraph / AI agent"]
-    end
+ subgraph EDGE[" Edge inference RPi 5 16GB + Hailo-10H"]
+ CORE["Coastal-Alpine-Core<br/>guards | telemetry"]
+ LLM["Gemma 4 via Ollama<br/>gemma4:e4b multimodal"]
+ AG["LangGraph / AI agent"]
+ end
 
-    subgraph OUT["â'¢ Actions & compliance"]
-        ACT["Actuators<br/>aeration | pumps | relays"]
-        LOG["Logging | pruning | export"]
-        AUD["Audit records<br/>JSON/CSV council-ready"]
-    end
+ subgraph OUT[" Actions & compliance"]
+ ACT["Actuators<br/>aeration | pumps | relays"]
+ LOG["Logging | pruning | export"]
+ AUD["Audit records<br/>JSON/CSV council-ready"]
+ end
 
-    S & C & M --> CORE --> LLM --> AG
-    AG --> ACT
-    AG --> LOG --> AUD
+ S & C & M --> CORE --> LLM --> AG
+ AG --> ACT
+ AG --> LOG --> AUD
 
-    class S,C,M sense
-    class CORE,AG core
-    class LLM ai
-    class ACT act
-    class LOG,AUD store
+ class S,C,M sense
+ class CORE,AG core
+ class LLM ai
+ class ACT act
+ class LOG,AUD store
 ```
 
  | Layer | Components | Role |
@@ -276,19 +274,19 @@ flowchart TB
 
 ```bash
 AquaGuard-Portal/
-â"œâ"€â"€ portal_core/              # Core engine (ai_agent.py, mqtt_client.py, compliance_exporter.py, etc.)
-â"œâ"€â"€ portal_schemas/           # Pydantic models (including compliance record schemas)
-â"œâ"€â"€ telemetry_data/           # Local logs, media buffers, and compliance exports
-â"œâ"€â"€ tests/
-â"œâ"€â"€ main.py
-â"œâ"€â"€ validate.py
-â"œâ"€â"€ requirements.txt
-â"œâ"€â"€ requirements-dev.txt
-â"œâ"€â"€ .env.example
-â"œâ"€â"€ aquaguard.service         # Systemd service
-â"œâ"€â"€ ARCHITECTURE.md
-â"œâ"€â"€ COMPLIANCE.md             # NZ regulatory mapping and record-keeping guide
-â""â"€â"€ README.md
+|-- portal_core/ # Core engine (ai_agent.py, mqtt_client.py, compliance_exporter.py, etc.)
+|-- portal_schemas/ # Pydantic models (including compliance record schemas)
+|-- telemetry_data/ # Local logs, media buffers, and compliance exports
+|-- tests/
+|-- main.py
+|-- validate.py
+|-- requirements.txt
+|-- requirements-dev.txt
+|-- .env.example
+|-- aquaguard.service # Systemd service
+|-- ARCHITECTURE.md
+|-- COMPLIANCE.md # NZ regulatory mapping and record-keeping guide
+-- README.md
 ```
 
 ---
@@ -315,7 +313,7 @@ AquaGuard-Portal/
 
 ## New Zealand Regulatory & Compliance Framework
 
-This section maps AquaGuard Portal's data outputs to the key NZ regulatory instruments operators must satisfy. AquaGuard is not a substitute for professional environmental or legal advice  consult your regional council and a qualified environmental consultant for site-specific consent conditions.
+This section maps AquaGuard Portal's data outputs to the key NZ regulatory instruments operators must satisfy. AquaGuard is not a substitute for professional environmental or legal advice consult your regional council and a qualified environmental consultant for site-specific consent conditions.
 
 ### Primary Legislation
 
@@ -329,7 +327,7 @@ This section maps AquaGuard Portal's data outputs to the key NZ regulatory instr
 ### National Environmental Standards
 
 **NES for Freshwater (NES-F 2020)**
-Resource Management (National Environmental Standards for Freshwater) Regulations 2020  the core compliance instrument for dairy effluent. Note that while December 2025 amendments (effective January 2026) streamlined quarrying/mining consenting, core agricultural effluent and Te Mana o te Wai rules remain fully active.
+Resource Management (National Environmental Standards for Freshwater) Regulations 2020 the core compliance instrument for dairy effluent. Note that while December 2025 amendments (effective January 2026) streamlined quarrying/mining consenting, core agricultural effluent and Te Mana o te Wai rules remain fully active.
 
 - Dairy effluent systems must comply 365 days per year under permitted activity rules
 - Resource consent required for intensive operations (feedlots, certain irrigation areas exceeding 10ha)
@@ -337,7 +335,7 @@ Resource Management (National Environmental Standards for Freshwater) Regulation
 - Integration with DairyNZ Effluent Warrant of Fitness (WoF) assessments: AquaGuard telemetry logs support WoF documentation requirements
 
 **NES for Marine Aquaculture (NES-MA)**
-National Environmental Standards for Marine Aquaculture  core instrument for marine farming. The **NES-MA Amendments came into effect on 4 June 2026**, streamlining the re-consenting process and clarifying conditions for existing marine farms to reduce consenting barriers.
+National Environmental Standards for Marine Aquaculture core instrument for marine farming. The **NES-MA Amendments came into effect on 4 June 2026**, streamlining the re-consenting process and clarifying conditions for existing marine farms to reduce consenting barriers.
 
 - Regional councils responsible for consenting within the coastal marine area (012 nautical mile limit)
 - AquaGuard water quality logs support Environmental Monitoring and Operations Plans (EMOPs) embedded in consent conditions
@@ -345,11 +343,11 @@ National Environmental Standards for Marine Aquaculture  core instrument for mar
 
 ### Freshwater Farm Plans
 
-Resource Management (Freshwater Farm Plans) Regulations 2023  mandatory plans for farms in designated Freshwater Management Units (FMUs).
+Resource Management (Freshwater Farm Plans) Regulations 2023 mandatory plans for farms in designated Freshwater Management Units (FMUs).
 
 - Nationwide rollout paused in late 2024 (except the active **Southland Region**) pending RMA reform.
 - The **August 2025 Resource Management (Consenting and Other System Changes) Amendment Act** updated the system to allow closer integration with industry assurance programmes, enabling approved industry organisations to appoint certifiers and auditors alongside regional councils.
-- AquaGuard's compliance export generates structured JSON/CSV records of sensor events, thresholds breached, and automated responses  serving as verified, auditor-ready evidence of plan implementation.
+- AquaGuard's compliance export generates structured JSON/CSV records of sensor events, thresholds breached, and automated responses serving as verified, auditor-ready evidence of plan implementation.
 
 ### Land-Based Aquaculture
 
@@ -359,39 +357,39 @@ Freshwater Fish Farming Regulations 1983 (under Fisheries Act 1996) apply to all
 
 AquaGuard is designed to support site-specific permitted activity rules across all major NZ regional councils, including:
 
-- **Horizons Regional Council** (ManawatÅ«-Whanganui, including Taranaki border catchments)
-- **Waikato Regional Council**  Waikato Regional Plan Rule **3.5.5.1** permitted activity conditions for discharging farm dairy effluent to land (requiring that no effluent enters surface water or causes surface ponding). AquaGuard's continuous sensor monitoring and pump shutoff relays provide direct, auditable proof of compliance.
+- **Horizons Regional Council** (Manawatu-Whanganui, including Taranaki border catchments)
+- **Waikato Regional Council** Waikato Regional Plan Rule **3.5.5.1** permitted activity conditions for discharging farm dairy effluent to land (requiring that no effluent enters surface water or causes surface ponding). AquaGuard's continuous sensor monitoring and pump shutoff relays provide direct, auditable proof of compliance.
 - **Environment Canterbury (ECan)**
 - **Otago Regional Council (ORC)**
 - **Environment Southland**
 
 Operators must verify their specific permitted activity thresholds with their regional council. AquaGuard's `.env` file includes configurable threshold parameters to match site-specific consent conditions.
 
-### TÄngata Whenua & Te Mana o te Wai
+### Tangata Whenua & Te Mana o te Wai
 
-The National Policy Statement for Freshwater Management 2020 (NPS-FM) establishes the *Te Mana o te Wai* hierarchy, giving first priority to the health and wellbeing of freshwater bodies  a legal framing that reflects tikanga MÄori values for wai (water).
+The National Policy Statement for Freshwater Management 2020 (NPS-FM) establishes the *Te Mana o te Wai* hierarchy, giving first priority to the health and wellbeing of freshwater bodies a legal framing that reflects tikanga Maori values for wai (water).
 
-- Resource consent conditions in many regions now include effects assessments on tÄngata whenua values and practices (e.g., Northland Regional Council's proposed effluent consent conditions)
-- AquaGuard's sovereign data architecture ensures monitoring data generated on or near whenua MÄori remains under the control of the operator and, where agreed, accessible to the relevant iwi or hapÅ«
-- This aligns with *Te Mana Raraunga* (MÄori Data Sovereignty) principles and supports operators in demonstrating culturally appropriate environmental kaitiakitanga through documented, auditable evidence
+- Resource consent conditions in many regions now include effects assessments on tangata whenua values and practices (e.g., Northland Regional Council's proposed effluent consent conditions)
+- AquaGuard's sovereign data architecture ensures monitoring data generated on or near whenua Maori remains under the control of the operator and, where agreed, accessible to the relevant iwi or hapu
+- This aligns with *Te Mana Raraunga* (Maori Data Sovereignty) principles and supports operators in demonstrating culturally appropriate environmental kaitiakitanga through documented, auditable evidence
 
-For projects on or adjacent to MÄori land or within customary fisheries areas, early engagement with the relevant iwi authority is strongly recommended before deployment.
+For projects on or adjacent to Maori land or within customary fisheries areas, early engagement with the relevant iwi authority is strongly recommended before deployment.
 
 ---
 
 ## Real-World Deployment Examples
 
-**Marine Aquaculture  Mussel and Salmon Farms (NES-MA)**
+**Marine Aquaculture Mussel and Salmon Farms (NES-MA)**
 Deployed at coastal marine sites to monitor dissolved oxygen, temperature, and turbidity. Automated aeration or alert triggering during low-oxygen events. Water quality records fed into EMOP reporting required under resource consent conditions. All data remains on-device; no cloud transmission required to meet MPI reporting obligations.
 
 **Dairy Farm Effluent Management (NES-F 2020 / Regional Plan Permitted Activity)**
-Continuous monitoring of effluent treatment ponds  pH, DO, temperature  with timestamped logs for 365-day compliance. Automated alerts and actuator control (pump management) in response to threshold breaches. Compliance export module generates records suitable for council inspection, DairyNZ WoF documentation, and Freshwater Farm Plan audit evidence.
+Continuous monitoring of effluent treatment ponds pH, DO, temperature with timestamped logs for 365-day compliance. Automated alerts and actuator control (pump management) in response to threshold breaches. Compliance export module generates records suitable for council inspection, DairyNZ WoF documentation, and Freshwater Farm Plan audit evidence.
 
-**Land-Based Aquaculture  Recirculating Systems (Freshwater Fish Farming Regulations 1983)**
+**Land-Based Aquaculture Recirculating Systems (Freshwater Fish Farming Regulations 1983)**
 Deployed in RAS facilities (salmon, trout, whitebait ranching) where water parameter precision is critical. Gemma 4 multimodal inference analyses camera feeds for stock behaviour anomalies alongside sensor data. Fish-farm licence compliance supported through continuous parameter logging.
 
 **Conservation & Wetland Restoration**
-Integrated into ecological restoration sites  wetlands, riparian plantings, kaitiakitanga monitoring programmes  for real-time biodiversity and water health tracking. Suitable for iwi-led environmental monitoring with full data sovereignty.
+Integrated into ecological restoration sites wetlands, riparian plantings, kaitiakitanga monitoring programmes for real-time biodiversity and water health tracking. Suitable for iwi-led environmental monitoring with full data sovereignty.
 
 ### Implementation Notes
 
@@ -416,33 +414,33 @@ Integrated into ecological restoration sites  wetlands, riparian plantings, kait
 
 ## Documentation
 
-- [ARCHITECTURE.md](./ARCHITECTURE.md)  Detailed system design
-- [HARDWARE_SETUP.md](./HARDWARE_SETUP.md)  Hardware assembly, NPU setup, IP-rated enclosure guidance
-- [COMPLIANCE.md](./COMPLIANCE.md)  NZ regulatory mapping and audit record guide
-- [GETTING_STARTED.md](./GETTING_STARTED.md)  Extended setup guide
-- [CHANGELOG.md](./CHANGELOG.md)  Version history
-- [DEVELOPMENT.md](./DEVELOPMENT.md)  Contribution guidelines
+- [ARCHITECTURE.md](./ARCHITECTURE.md) Detailed system design
+- [HARDWARE_SETUP.md](./HARDWARE_SETUP.md) Hardware assembly, NPU setup, IP-rated enclosure guidance
+- [COMPLIANCE.md](./COMPLIANCE.md) NZ regulatory mapping and audit record guide
+- [GETTING_STARTED.md](./GETTING_STARTED.md) Extended setup guide
+- [CHANGELOG.md](./CHANGELOG.md) Version history
+- [DEVELOPMENT.md](./DEVELOPMENT.md) Contribution guidelines
 
-### Built in Alignment with MÄori Principles
+### Built in Alignment with Maori Principles
 
-This software has been developed in strict compliance with the principles of *kaitiakitanga* (environmental guardianship) and *Te Mana Raraunga* (MÄori Data Sovereignty).
+This software has been developed in strict compliance with the principles of *kaitiakitanga* (environmental guardianship) and *Te Mana Raraunga* (Maori Data Sovereignty).
 
 Here in New Zealand, water (*wai*) is a *taonga* (treasure). Because this system monitors the health of our local catchments, coastal marine farms, and agricultural sites, it is vital that the data isn't shipped off to overseas servers. By keeping all monitoring, inference, and data logging strictly local and offline, we ensure that operators and local iwi retain absolute ownership and control over their environmental data. It's about building practical tech that respects the true *kaitiaki* doing the hard yards on the ground.
 
 **Relevant References & Standards:**
 
-- **Te Mana Raraunga (MÄori Data Sovereignty Network):** [Principles of MÄori Data Sovereignty](https://www.temanararaunga.maori.nz/)
+- **Te Mana Raraunga (Maori Data Sovereignty Network):** [Principles of Maori Data Sovereignty](https://www.temanararaunga.maori.nz/)
 - **Ministry for the Environment:** [Te Mana o te Wai under the National Policy Statement for Freshwater Management](https://www.google.com/search?q=https://environment.govt.nz/acts-and-regulations/national-policy-statements/national-policy-statement-freshwater-management/te-mana-o-te-wai/)
 
 ---
 
 ## License
 
-This project is licensed under the Coastal Alpine Tech Limited License  see the [LICENSE](./LICENSE) file for details.
+This project is licensed under the Coastal Alpine Tech Limited License see the [LICENSE](./LICENSE) file for details.
 
 ---
 
-**Built for New Zealand  data sovereign, edge-native, compliance-aware.**
+**Built for New Zealand data sovereign, edge-native, compliance-aware.**
 Questions or collaboration? Contact Coastal Alpine Tech Limited, New Plymouth, Taranaki.
 
 ---

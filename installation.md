@@ -13,21 +13,21 @@ python3 bootstrap.py
 ### Option 2: Manual Setup
 If you prefer to perform the setup steps manually:
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/fivepanelhat/AquaGuard-Portal.git
-   cd AquaGuard-Portal
-   ```
+ ```bash
+ git clone https://github.com/fivepanelhat/AquaGuard-Portal.git
+ cd AquaGuard-Portal
+ ```
 2. Create and activate a virtual environment:
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
+ ```bash
+ python3 -m venv venv
+ source venv/bin/activate
+ ```
 3. Upgrade pip and install dependencies:
-   ```bash
-   pip install --upgrade pip
-   pip install git+https://github.com/fivepanelhat/coastal-alpine-core.git@v0.2.0
-   pip install -r requirements-dev.txt
-   ```
+ ```bash
+ pip install --upgrade pip
+ pip install git+https://github.com/fivepanelhat/coastal-alpine-core.git@v0.2.0
+ pip install -r requirements-dev.txt
+ ```
 
 ---
 
@@ -42,18 +42,18 @@ python bootstrap.py
 ### Option 2: Manual Setup
 If you prefer to perform the setup steps manually:
 1. Clone the repository:
-   ```powershell
-   git clone https://github.com/fivepanelhat/AquaGuard-Portal.git
-   cd AquaGuard-Portal
-   ```
+ ```powershell
+ git clone https://github.com/fivepanelhat/AquaGuard-Portal.git
+ cd AquaGuard-Portal
+ ```
 2. Create and activate a virtual environment:
-   ```powershell
-   python -m venv venv
-   .\venv\Scripts\activate
-   ```
+ ```powershell
+ python -m venv venv
+ .\venv\Scripts\activate
+ ```
 3. Upgrade pip and install dependencies:
-   ```powershell
-   python -m pip install --upgrade pip
-   pip install git+https://github.com/fivepanelhat/coastal-alpine-core.git@v0.2.0
-   pip install -r requirements-dev.txt
-   ```
+ ```powershell
+ python -m pip install --upgrade pip
+ pip install git+https://github.com/fivepanelhat/coastal-alpine-core.git@v0.2.0
+ pip install -r requirements-dev.txt
+ ```
