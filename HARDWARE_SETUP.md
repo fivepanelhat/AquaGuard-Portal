@@ -1,6 +1,6 @@
 # AquaGuard Portal: Hardware Setup Guide
 
-**Coastal Alpine Tech Limited** — New Plymouth, Taranaki
+**Coastal Alpine Tech Limited** - New Plymouth, Taranaki
 
 ---
 
@@ -41,7 +41,7 @@ Expected output: `Hailo-10H device detected`.
 
 ---
 
-## Sensor Wiring (ESP32 → MQTT)
+## Sensor Wiring (ESP32 -> MQTT)
 
 Connect sensors to ESP32 GPIO pins per your sensor datasheet.
 Flash the ESP32 with the MQTT publisher firmware in `portal_core/esp32_firmware/`.
@@ -62,7 +62,7 @@ Seal all cable entry points with marine-grade gland fittings.
 | Sensor | Calibration Interval | Method |
 |---|---|---|
 | pH probe | 12 months | Two-point buffer calibration (pH 4.0 and 7.0) |
-| DO probe | 3–6 months | Air-saturation and zero-oxygen calibration |
+| DO probe | 3-6 months | Air-saturation and zero-oxygen calibration |
 | Turbidity | 6 months | Formazin standard solutions |
 
 *Always log calibration dates and readings in `telemetry_data/sensor_logs/calibration_log.json`.*

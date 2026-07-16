@@ -1,4 +1,4 @@
-# AquaGuard Portal — cross-platform core deps (Windows / Linux / macOS)
+# AquaGuard Portal - cross-platform core deps (Windows / Linux / macOS)
 # Optional audio (pyaudio) lives in requirements-optional.txt
 
 pydantic>=2.5.0,<3.0.0

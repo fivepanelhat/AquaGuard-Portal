@@ -25,232 +25,232 @@ from coastal_alpine_core.portal_core.compliance_exporter import ComplianceExport
 from portal_schemas.compliance import ComplianceRecord
 
 logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+ level=logging.INFO,
+ format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
 )
 logger = logging.getLogger("AquaGuardPortal.Validation")
 
 
 async def test_configuration():
-    logger.info("\n" + "=" * 60)
-    logger.info("DIAGNOSTIC TEST 1: Configuration Loading")
-    logger.info("=" * 60)
-    try:
-        config = load_aquaguard_config()
-        print_config(config)
-        logger.info("✓ Configuration test PASSED.")
-        return config
-    except Exception as e:
-        logger.error(f"✗ Configuration test FAILED: {e}")
-        return None
+ logger.info("\n" + "=" * 60)
+ logger.info("DIAGNOSTIC TEST 1: Configuration Loading")
+ logger.info("=" * 60)
+ try:
+ config = load_aquaguard_config()
+ print_config(config)
+ logger.info("[OK] Configuration test PASSED.")
+ return config
+ except Exception as e:
+ logger.error(f"[X] Configuration test FAILED: {e}")
+ return None
 
 
 async def test_ollama(config):
-    logger.info("\n" + "=" * 60)
-    logger.info("DIAGNOSTIC TEST 2: Ollama LLM Connection")
-    logger.info("=" * 60)
-    try:
-        ai_agent = AIAgent(
-            ollama_host=config.ollama.host, model=config.ollama.model
-        )
-        is_healthy = await ai_agent.health_check()
-        if is_healthy:
-            logger.info("✓ Ollama service is connected.")
-            logger.info(f"  Target Model: {config.ollama.model}")
-            return True
-        else:
-            logger.warning(
-                "⚠ Ollama service is connected, but target model is not present/cached."
-            )
-            # We return True to allow simulation fallback execution
-            return True
-    except Exception as e:
-        logger.error(f"✗ Ollama connection failed: {e}")
-        return False
+ logger.info("\n" + "=" * 60)
+ logger.info("DIAGNOSTIC TEST 2: Ollama LLM Connection")
+ logger.info("=" * 60)
+ try:
+ ai_agent = AIAgent(
+ ollama_host=config.ollama.host, model=config.ollama.model
+ )
+ is_healthy = await ai_agent.health_check()
+ if is_healthy:
+ logger.info("[OK] Ollama service is connected.")
+ logger.info(f" Target Model: {config.ollama.model}")
+ return True
+ else:
+ logger.warning(
+ "⚠ Ollama service is connected, but target model is not present/cached."
+ )
+ # We return True to allow simulation fallback execution
+ return True
+ except Exception as e:
+ logger.error(f"[X] Ollama connection failed: {e}")
+ return False
 
 
 async def test_mqtt(config):
-    logger.info("\n" + "=" * 60)
-    logger.info("DIAGNOSTIC TEST 3: MQTT Broker Connection")
-    logger.info("=" * 60)
-    try:
-        mqtt_client = MQTTClient(
-            broker_host=config.mqtt.broker,
-            broker_port=config.mqtt.port,
-            client_id="diagnostics-aquaguard-portal",
-            topic_prefix=config.mqtt.topic_prefix,
-        )
+ logger.info("\n" + "=" * 60)
+ logger.info("DIAGNOSTIC TEST 3: MQTT Broker Connection")
+ logger.info("=" * 60)
+ try:
+ mqtt_client = MQTTClient(
+ broker_host=config.mqtt.broker,
+ broker_port=config.mqtt.port,
+ client_id="diagnostics-aquaguard-portal",
+ topic_prefix=config.mqtt.topic_prefix,
+ )
 
-        # Connect with short timeout
-        ok = await asyncio.wait_for(mqtt_client.connect(), timeout=5.0)
-        await asyncio.sleep(1)
+ # Connect with short timeout
+ ok = await asyncio.wait_for(mqtt_client.connect(), timeout=5.0)
+ await asyncio.sleep(1)
 
-        is_healthy = await mqtt_client.health_check()
-        if is_healthy:
-            logger.info(
-                f"✓ Connected to MQTT Broker successfully: {config.mqtt.broker}:{config.mqtt.port}"
-            )
-            await mqtt_client.disconnect()
-            return True
-        else:
-            logger.warning(
-                "⚠ Could not verify MQTT Broker connection; checking local offline status."
-            )
-            await mqtt_client.disconnect()
-            return True  # Allow offline execution pass
-    except Exception as e:
-        logger.warning(
-            f"⚠ MQTT Broker test skipped/failed (expected in offline environments): {e}"
-        )
-        return True
+ is_healthy = await mqtt_client.health_check()
+ if is_healthy:
+ logger.info(
+ f"[OK] Connected to MQTT Broker successfully: {config.mqtt.broker}:{config.mqtt.port}"
+ )
+ await mqtt_client.disconnect()
+ return True
+ else:
+ logger.warning(
+ "⚠ Could not verify MQTT Broker connection; checking local offline status."
+ )
+ await mqtt_client.disconnect()
+ return True # Allow offline execution pass
+ except Exception as e:
+ logger.warning(
+ f"⚠ MQTT Broker test skipped/failed (expected in offline environments): {e}"
+ )
+ return True
 
 
 async def test_av_capture(config):
-    logger.info("\n" + "=" * 60)
-    logger.info("DIAGNOSTIC TEST 4: Camera & Audio Sensors Ingestion")
-    logger.info("=" * 60)
-    try:
-        av = AVCapture(
-            camera_index=config.camera.device_index,
-            video_fps=config.camera.fps,
-            audio_sample_rate=config.audio.sample_rate,
-            audio_chunk_size=config.audio.chunk_size,
-        )
+ logger.info("\n" + "=" * 60)
+ logger.info("DIAGNOSTIC TEST 4: Camera & Audio Sensors Ingestion")
+ logger.info("=" * 60)
+ try:
+ av = AVCapture(
+ camera_index=config.camera.device_index,
+ video_fps=config.camera.fps,
+ audio_sample_rate=config.audio.sample_rate,
+ audio_chunk_size=config.audio.chunk_size,
+ )
 
-        await av.start_video_stream()
-        await av.start_audio_stream()
+ await av.start_video_stream()
+ await av.start_audio_stream()
 
-        # Ingest frames
-        frame = await av.capture_frame()
-        audio = await av.capture_audio_chunk()
+ # Ingest frames
+ frame = await av.capture_frame()
+ audio = await av.capture_audio_chunk()
 
-        logger.info(f"  Simulated/Real Video Capture: {len(frame)} bytes")
-        logger.info(f"  Simulated/Real Audio Capture: {len(audio)} bytes")
+ logger.info(f" Simulated/Real Video Capture: {len(frame)} bytes")
+ logger.info(f" Simulated/Real Audio Capture: {len(audio)} bytes")
 
-        await av.stop()
-        logger.info("✓ AV Ingestion test PASSED.")
-        return True
-    except Exception as e:
-        logger.error(f"✗ AV Ingestion test FAILED: {e}")
-        return False
+ await av.stop()
+ logger.info("[OK] AV Ingestion test PASSED.")
+ return True
+ except Exception as e:
+ logger.error(f"[X] AV Ingestion test FAILED: {e}")
+ return False
 
 
 async def test_hardware_control(config):
-    logger.info("\n" + "=" * 60)
-    logger.info("DIAGNOSTIC TEST 5: Actuator Relays Verification")
-    logger.info("=" * 60)
-    try:
-        hw = HardwareController(
-            aerator_gpio_pin=config.hardware.aerator_gpio_pin,
-            pump_gpio_pin=config.hardware.pump_gpio_pin,
-            valve_gpio_pin=config.hardware.valve_gpio_pin,
-            alert_gpio_pin=config.hardware.alert_gpio_pin,
-            enable_hardware_control=config.hardware.enable_hardware_control,
-        )
+ logger.info("\n" + "=" * 60)
+ logger.info("DIAGNOSTIC TEST 5: Actuator Relays Verification")
+ logger.info("=" * 60)
+ try:
+ hw = HardwareController(
+ aerator_gpio_pin=config.hardware.aerator_gpio_pin,
+ pump_gpio_pin=config.hardware.pump_gpio_pin,
+ valve_gpio_pin=config.hardware.valve_gpio_pin,
+ alert_gpio_pin=config.hardware.alert_gpio_pin,
+ enable_hardware_control=config.hardware.enable_hardware_control,
+ )
 
-        await hw.setup()
+ await hw.setup()
 
-        # Actuate states
-        from portal_schemas.compliance import (
-            AerationAction,
-            PumpAction,
-            ValveAction,
-        )
+ # Actuate states
+ from portal_schemas.compliance import (
+ AerationAction,
+ PumpAction,
+ ValveAction,
+ )
 
-        await hw.set_aerator(AerationAction.HIGH)
-        await hw.set_pump(PumpAction.MEDIUM)
-        await hw.set_valve(ValveAction.CLOSED)
-        await hw.trigger_alert(200)
+ await hw.set_aerator(AerationAction.HIGH)
+ await hw.set_pump(PumpAction.MEDIUM)
+ await hw.set_valve(ValveAction.CLOSED)
+ await hw.trigger_alert(200)
 
-        status = hw.get_status()
-        logger.info(f"  Actuation Status: {status}")
+ status = hw.get_status()
+ logger.info(f" Actuation Status: {status}")
 
-        await hw.cleanup()
-        logger.info("✓ Actuators test PASSED.")
-        return True
-    except Exception as e:
-        logger.error(f"✗ Actuators test FAILED: {e}")
-        return False
+ await hw.cleanup()
+ logger.info("[OK] Actuators test PASSED.")
+ return True
+ except Exception as e:
+ logger.error(f"[X] Actuators test FAILED: {e}")
+ return False
 
 
 async def test_compliance_exporter(config):
-    logger.info("\n" + "=" * 60)
-    logger.info("DIAGNOSTIC TEST 6: Compliance Exporter & Audit Logging")
-    logger.info("=" * 60)
-    try:
-        exporter = ComplianceExporter(
-            compliance_dir=str(config.storage.compliance_dir)
-        )
+ logger.info("\n" + "=" * 60)
+ logger.info("DIAGNOSTIC TEST 6: Compliance Exporter & Audit Logging")
+ logger.info("=" * 60)
+ try:
+ exporter = ComplianceExporter(
+ compliance_dir=str(config.storage.compliance_dir)
+ )
 
-        record = ComplianceRecord(
-            audit_id=f"aud-test-{uuid.uuid4().hex[:6]}",
-            timestamp=datetime.now(),
-            regional_council=config.consent.regional_council,
-            consent_id=config.consent.consent_id,
-            status="compliant",
-            metrics={
-                "pH": 7.3,
-                "dissolved_oxygen": 6.8,
-                "temperature": 16.5,
-                "turbidity": 12.0,
-                "nitrate": 1.1,
-            },
-            actions_taken=["aerator: medium", "pump: low", "valve: closed"],
-            operator_notes="Validation test diagnostics audit logging run.",
-        )
+ record = ComplianceRecord(
+ audit_id=f"aud-test-{uuid.uuid4().hex[:6]}",
+ timestamp=datetime.now(),
+ regional_council=config.consent.regional_council,
+ consent_id=config.consent.consent_id,
+ status="compliant",
+ metrics={
+ "pH": 7.3,
+ "dissolved_oxygen": 6.8,
+ "temperature": 16.5,
+ "turbidity": 12.0,
+ "nitrate": 1.1,
+ },
+ actions_taken=["aerator: medium", "pump: low", "valve: closed"],
+ operator_notes="Validation test diagnostics audit logging run.",
+ )
 
-        ok = await exporter.export_record(record)
-        if ok:
-            logger.info(
-                "✓ Compliance records written successfully to telemetry folder."
-            )
-            return True
-        else:
-            logger.error("✗ Failed writing compliance records.")
-            return False
-    except Exception as e:
-        logger.error(f"✗ Compliance exporter diagnostics FAILED: {e}")
-        return False
+ ok = await exporter.export_record(record)
+ if ok:
+ logger.info(
+ "[OK] Compliance records written successfully to telemetry folder."
+ )
+ return True
+ else:
+ logger.error("[X] Failed writing compliance records.")
+ return False
+ except Exception as e:
+ logger.error(f"[X] Compliance exporter diagnostics FAILED: {e}")
+ return False
 
 
 async def main():
-    logger.info("\n" + "#" * 60)
-    logger.info(
-        "      AquaGuard Portal System Diagnostics Boot Sequence      "
-    )
-    logger.info("#" * 60)
+ logger.info("\n" + "#" * 60)
+ logger.info(
+ " AquaGuard Portal System Diagnostics Boot Sequence "
+ )
+ logger.info("#" * 60)
 
-    results = {}
+ results = {}
 
-    config = await test_configuration()
-    results["1_config"] = config is not None
-    if not config:
-        logger.error("System diagnostics halted: invalid settings.")
-        sys.exit(1)
+ config = await test_configuration()
+ results["1_config"] = config is not None
+ if not config:
+ logger.error("System diagnostics halted: invalid settings.")
+ sys.exit(1)
 
-    results["2_ollama"] = await test_ollama(config)
-    results["3_mqtt"] = await test_mqtt(config)
-    results["4_av_capture"] = await test_av_capture(config)
-    results["5_actuators"] = await test_hardware_control(config)
-    results["6_compliance"] = await test_compliance_exporter(config)
+ results["2_ollama"] = await test_ollama(config)
+ results["3_mqtt"] = await test_mqtt(config)
+ results["4_av_capture"] = await test_av_capture(config)
+ results["5_actuators"] = await test_hardware_control(config)
+ results["6_compliance"] = await test_compliance_exporter(config)
 
-    logger.info("\n" + "=" * 60)
-    logger.info("DIAGNOSTIC TEST SEQUENCE CONCLUSION SUMMARY")
-    logger.info("=" * 60)
+ logger.info("\n" + "=" * 60)
+ logger.info("DIAGNOSTIC TEST SEQUENCE CONCLUSION SUMMARY")
+ logger.info("=" * 60)
 
-    passed = sum(1 for v in results.values() if v)
-    total = len(results)
+ passed = sum(1 for v in results.values() if v)
+ total = len(results)
 
-    for k, v in results.items():
-        logger.info(f"  {'[✓] PASS' if v else '[✗] FAIL'}: {k.upper()[2:]}")
+ for k, v in results.items():
+ logger.info(f" {'[[OK]] PASS' if v else '[[X]] FAIL'}: {k.upper()[2:]}")
 
-    logger.info("=" * 60)
-    logger.info(f"Results: {passed} out of {total} checks passed.")
-    logger.info("=" * 60)
+ logger.info("=" * 60)
+ logger.info(f"Results: {passed} out of {total} checks passed.")
+ logger.info("=" * 60)
 
-    return passed == total
+ return passed == total
 
 
 if __name__ == "__main__":
-    success = asyncio.run(main())
-    sys.exit(0 if success else 1)
+ success = asyncio.run(main())
+ sys.exit(0 if success else 1)
