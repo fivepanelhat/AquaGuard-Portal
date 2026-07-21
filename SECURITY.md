@@ -32,3 +32,11 @@ vulnerabilities will be addressed within 48 hours.
 
 - Portal CI + SecOps (Bandit/Gitleaks) + red-team schedules.
 - Actuator / irrigation / crop actions must remain fail-closed on guard failure.
+
+## Fleet security principles
+
+- **No silent exfiltration** of personal or tenant operational data
+- Prefer **local-first** processing; third-party AI only with explicit operator configuration and UI/docs disclosure
+- Report vulnerabilities via GitHub Security Advisories or the maintainer contact on the org profile
+- High-stakes production changes require human approval (HITL)
+
