@@ -1,19 +1,25 @@
 # COMPLIANCE.md
 
 **Coastal Alpine Tech Limited** | **Product:** AquaGuard Portal
-Last updated: 19 July 2026
+Last updated: 22 July 2026
 
 ## Privacy / Security / Governance (fleet mandatory)
 
+**Last reviewed (fleet block):** 22 July 2026
+
 | Pillar | Standard |
 | --- | --- |
-| **Privacy** | Local-first default; purpose-limited collection; Privacy Act 2020; Te Mana Raraunga spirit; third-party processing only when opt-in and disclosed |
-| **Security** | No silent exfil; owner-controlled credentials; least privilege; SecOps / red-team cadence where CI is present |
-| **Governance** | HITL for high-stakes; agents draft only; humans sign / send / pay |
+| **No data sales** | **Personal and customer operational data is not sold to third parties** for ads, data brokerage, or unrelated monetisation. |
+| **Privacy** | Designed to operate in accordance with the **New Zealand Privacy Act 2020** (IPPs; IPP 3A awareness). Local-first default; purpose-limited collection; third-party processing only when opt-in and disclosed. |
+| **Te Mana Raraunga** | Designed to operate **in accordance with Te Mana Raraunga** Māori data sovereignty principles where Māori / community data interests apply. |
+| **NZ AI safety** | Aligned with NZ AI safety / responsible AI posture: human oversight for high-stakes use, transparency of AI processing, Algorithm Charter spirit, no silent training on private customer content without consent. |
+| **Security** | No silent exfil; owner-controlled credentials; least privilege; SecOps / red-team cadence where CI is present. |
+| **Governance** | HITL for high-stakes; agents draft only; humans sign / send / pay. |
+| **Assurance path** | **SOC 2** Type I/II and **ISO/IEC 42001** treated as multi-tenant SaaS **alignment targets**, not claimed certifications unless a formal report is published. |
+| **Regions** | Australia, Asia-Pacific, and European frameworks mapped in [`COMPLIANCE_REGIONS.md`](./COMPLIANCE_REGIONS.md) under a **NZ AI safety-first** baseline. |
 
-Last reviewed (fleet block): 2026-07-21
+> This document is **alignment evidence**, not a compliance certificate, audit report, or legal advice.
 
-> Super Grok compliance briefing (19 July 2026). This is **alignment evidence**, not a compliance certificate or legal advice.
 
 ## Regulatory Mapping
 
@@ -180,3 +186,7 @@ Here in New Zealand, water (*wai*) is a *taonga* (treasure). Because this system
 
 * **Te Mana Raraunga (Maori Data Sovereignty Network):** [Principles of Maori Data Sovereignty](https://www.temanararaunga.maori.nz/)
 * **Ministry for the Environment:** [Te Mana o te Wai under the National Policy Statement for Freshwater Management](https://www.google.com/search?q=https://environment.govt.nz/acts-and-regulations/national-policy-statements/national-policy-statement-freshwater-management/te-mana-o-te-wai/)
+
+### Data sales
+
+**We do not sell personal or customer operational data to third parties.**
