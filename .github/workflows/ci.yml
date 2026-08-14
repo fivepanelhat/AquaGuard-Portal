@@ -1,40 +1,40 @@
 name: CI - AquaGuard-Portal
 
 on:
- push:
- branches: [main]
- pull_request:
- branches: [main]
- workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
- contents: read
+  contents: read
 
 jobs:
- test:
- runs-on: ubuntu-latest
+  test:
+    runs-on: ubuntu-latest
 
- steps:
- - name: Checkout
- uses: actions/checkout@v4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
 
- - name: Set up Python
- uses: actions/setup-python@v5
- with:
- python-version: "3.11"
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
- - name: Install system audio libs (pyaudio build dep)
- run: sudo apt-get update -qq && sudo apt-get install -y -qq portaudio19-dev
+      - name: Install system audio libs (pyaudio build dep)
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq portaudio19-dev
 
- - name: Install dependencies
- run: |
- pip install -r requirements.txt
- pip install -r requirements-dev.txt
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
 
- - name: Verify against coastal-alpine-core
- uses: fivepanelhat/coastal-alpine-core/.github/actions/verify-core-update@main
- with:
- core-ref: v0.5.2
+      - name: Verify against coastal-alpine-core
+        uses: fivepanelhat/coastal-alpine-core/.github/actions/verify-core-update@main
+        with:
+          core-ref: v0.5.2
 
- - name: Run full test suite
- run: pytest -q --tb=short
+      - name: Run full test suite
+        run: pytest -q --tb=short
