@@ -19,7 +19,7 @@ from coastal_alpine_core.portal_core.media_pruner import MediaPruner
 from coastal_alpine_core.portal_core.compliance_exporter import ComplianceExporter
 from portal_schemas.compliance import ComplianceRecord
 
-from coastal_alpine_core.flywheel import DataFlywheel
+from coastal_alpine_core import DataFlywheel
 
 logging.basicConfig(
     level=logging.INFO,

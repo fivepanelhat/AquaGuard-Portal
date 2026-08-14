@@ -1,9 +1,11 @@
-
 name: RedTeam Tests
 on:
   schedule:
     - cron: "0 */8 * * *"
   workflow_dispatch:
+concurrency:
+  group: redteam-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
@@ -11,18 +13,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: recursive
           fetch-depth: 0
-      - name: Install OWASP ZAP
-        run: |
-          sudo apt-get update && sudo apt-get install -y zaproxy
-      - name: Run ZAP baseline scan
-        run: |
-          zap-baseline.py -t https://example.com -g gen -r zap_report.html
-      - name: Upload ZAP report
-        uses: actions/upload-artifact@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          name: zap-report
-          path: zap_report.html
+          python-version: '3.11'
+      - name: Run adversarial / security stress suite
+        shell: bash
+        run: |
+          if compgen -G "tests/test_security_stress*.py" > /dev/null; then
+            python -m pip install --upgrade pip
+            pip install pytest requests
+            if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+            if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
+            python -m pytest tests/test_security_stress*.py -v --tb=short
+          else
+            echo "No local adversarial suite in this repo - nothing to run."
+          fi
