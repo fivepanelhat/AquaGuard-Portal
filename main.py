@@ -1,7 +1,5 @@
 """
-main.py - AquaGuard Portal with Full Data Flywheel Integration
-
-Hardware outcomes are now recorded to the flywheel after every enforcement.
+main.py - AquaGuard Portal with Full Data Flywheel + SessionEvent Integration
 """
 
 import asyncio
@@ -20,6 +18,7 @@ from coastal_alpine_core.portal_core.compliance_exporter import ComplianceExport
 from portal_schemas.compliance import ComplianceRecord
 
 from coastal_alpine_core import DataFlywheel
+from session_bridge import PortalSession, timed
 
 logging.basicConfig(
     level=logging.INFO,
@@ -31,14 +30,14 @@ logger = logging.getLogger("AquaGuardPortal.Orchestrator")
 class AquaGuardPortal:
     def __init__(self, config):
         self.config = config
-
-        # Initialize DataFlywheel for this portal
-        self.flywheel = DataFlywheel(storage_path="flywheel_aquaguard.jsonl")
+        self.flywheel_path = "flywheel_aquaguard.jsonl"
+        self.flywheel = DataFlywheel(storage_path=self.flywheel_path)
+        self.session = PortalSession("aquaguard")
 
         self.ai_agent = AIAgent(
             ollama_host=config.ollama.host,
             model=config.ollama.model,
-            flywheel=self.flywheel,   # Pass for full integration
+            flywheel=self.flywheel,
         )
         self.mqtt_client = MQTTClient(
             broker_host=config.mqtt.broker,
@@ -76,12 +75,20 @@ class AquaGuardPortal:
             "turbidity": 5.0, "nitrate": 1.0,
         }
         self.is_running = False
-        logger.info("AquaGuard Portal initialized with full Data Flywheel support.")
+        logger.info("AquaGuard Portal initialized (flywheel + SessionEvent soft bridge).")
 
     async def evaluation_control_loop(self):
         while self.is_running:
             try:
                 await asyncio.sleep(15)
+                session_id = self.session.new_session_id()
+                t0 = timed()
+                self.session.emit(
+                    session_id,
+                    "prompt_received",
+                    actor="aquaguard",
+                    payload={"metrics_keys": list(self.latest_metrics.keys())},
+                )
 
                 sensor_analysis = await self.ai_agent.analyze_sensor_state(self.latest_metrics)
                 frame, audio = await asyncio.gather(
@@ -96,8 +103,13 @@ class AquaGuardPortal:
                 plan = await self.ai_agent.generate_optimization_plan(
                     sensor_analysis, visual_analysis, audio_analysis
                 )
+                self.session.emit(
+                    session_id,
+                    "agent_step",
+                    actor="ai_agent",
+                    payload={"has_plan": bool(plan)},
+                )
 
-                # Enforce + record hardware outcome to flywheel
                 enforcement_ok = await self.hardware_control.enforce_plan(plan)
 
                 if plan:
@@ -109,16 +121,23 @@ class AquaGuardPortal:
                         metadata=plan
                     )
 
+                outcome = "success" if enforcement_ok else "error"
+                self.session.complete_cycle(
+                    session_id,
+                    action="aquaguard.plan_cycle",
+                    outcome=outcome,
+                    latency_seconds=timed() - t0,
+                    input_summary=f"metrics={len(self.latest_metrics)}",
+                    output_summary=f"enforced={enforcement_ok}",
+                    flywheel_path=self.flywheel_path,
+                )
+
                 if enforcement_ok:
                     logger.info("Enforced optimization plan actions successfully.")
                 else:
                     logger.error("Plan actions enforcement failed.")
 
-                # ... rest of compliance recording logic unchanged ...
-
             except asyncio.CancelledError:
                 break
             except Exception as e:
                 logger.error(f"Error in evaluation execution loop: {e}", exc_info=True)
-
-    # ... other methods (start, stop, mqtt_listener_loop, etc.) remain the same ...
