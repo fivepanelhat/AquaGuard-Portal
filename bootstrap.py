@@ -36,7 +36,7 @@ PORTALS = [
 
 CORE_PACKAGE = "coastal_alpine_core"
 # Canonical GitHub repo + pin (case-sensitive path on Linux clones)
-CORE_GIT_URL = "https://github.com/fivepanelhat/Coastal-Alpine-Core.git@v0.5.4"
+CORE_GIT_URL = "https://github.com/fivepanelhat/Coastal-Alpine-Core.git@v0.5.9"
 
 
 def is_windows() -> bool:
@@ -110,13 +110,11 @@ def create_venv(venv_path: str) -> bool:
         return True
     print(f"  Creating virtual environment '{venv_path}'...")
     try:
-        # upgrade_deps can fail on locked/offline hosts — create without it first
         try:
             venv.create(venv_path, with_pip=True, upgrade_deps=True)
         except TypeError:
             venv.create(venv_path, with_pip=True)
         except Exception:
-            # retry without upgrade_deps
             if os.path.exists(venv_path):
                 shutil.rmtree(venv_path, ignore_errors=True)
             venv.create(venv_path, with_pip=True)
@@ -145,7 +143,6 @@ def install_core(pip_exe: str, editable: bool = False) -> bool:
             "Installing coastal_alpine_core (editable mode)",
             critical=True,
         )
-    # Prefer git+ URL with pin; fall back to main if tag missing
     ok = run_cmd(
         [pip_exe, "install", f"git+{CORE_GIT_URL}"],
         f"Installing coastal_alpine_core from GitHub ({CORE_GIT_URL})",
