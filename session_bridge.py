@@ -54,7 +54,7 @@ class PortalSession:
                 outcome=outcome,
             )
         except Exception as exc:
-            logger.debug("session emit failed: %s", exp if False else exc)
+            logger.debug("session emit failed: %s", exc)
 
     def complete_cycle(
         self,
